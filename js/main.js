@@ -1,13 +1,18 @@
-let amber = {
+let ALPizza = {
     init: function () {
-        amber.addListteners();
+        ALPizza.addListteners();
     },
     addListteners: function () {
-        document.getElementById('logInButton').addEventListener('click',amber.logIn);
+        document.getElementById('logInButton').addEventListener('click',ALPizza.logIn);
+        document.querySelectorAll('.option').forEach( item => item.addEventListener('click',ALPizza.getDate));
     },
-    logIn:function(){
-        document.getElementById('logIn').classList.add("hide");
+    logIn: function(){
+        document.getElementById('logIn').classList.add('hide');
+    },
+    getDate: function(ev){
+        document.querySelector('.highlight').classList.remove('highlight');
+        this.classList.add('highlight');
     }
 }
 
-amber.init();
+ALPizza.init();
