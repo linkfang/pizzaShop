@@ -152,3 +152,91 @@ header p:nth-child(1){
     height: 75%;
     object-fit: cover;
 }
+
+/*      Staff Pizza        */
+
+#staffPage{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+#staffNav{
+    width: 100%;
+    height: 100%;
+    background-color: darkslategrey;
+    color: white;
+}
+
+#staffNav .shop,#staffNav .people{
+    margin: 2rem 0 2rem 0;
+}
+
+#staffNav .shop p,#staffNav .people p{
+    padding: 1rem 2rem;
+}
+
+#staffNav .shop p:hover,#staffNav .people p:hover{
+    background-color: rgb(35, 61, 61);
+    cursor: pointer;
+}
+
+.navTitle{
+    font-weight: 700;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    background-color: rgb(70, 102, 102);
+}
+
+.navTitle p{
+    margin-left: 2rem;
+}
+
+#staffContent{
+    background-color: rgb(245, 245, 245);
+}
+
+.contentTitle{
+    font-weight: 700;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.contentList{
+    margin: 2rem;
+    background-color: white;
+}
+
+.contentTitle p{
+    margin-left: 2rem;
+}
+
+.staffLis{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+}
+
+.staffLis:nth-child(even){
+    background-color: rgb(245, 249, 250)
+}
+
+.staffLis p{
+    margin-left: 1rem;
+}
+
+.staffLis div{
+    margin-right: 1rem;
+    opacity: 0.7;
+}
+
+.staffLis div{
+    width: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+}

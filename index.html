@@ -14,63 +14,110 @@
 </head>
 
 <body>
-
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Pizza</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Change Password</a>
-        </li>
-    </ul>
-    <header>
-        <div>
-            <p>Link to Pizza</p>
-            <p>Everyday is a Pizzaday!</p>
+    <div id="userList" class="hide">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Pizza</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Ingredients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Change Password</a>
+            </li>
+        </ul>
+        <header>
+            <div>
+                <p>Link to Pizza</p>
+                <p>Everyday is a Pizzaday!</p>
+            </div>
+        </header>
+        <div id="pizzaList">
+            <p class="fullMenu">Full Menu</p>
+            <div id="list" class="row justify-content-center">
+                <div class="pizza" class="col-sm-12 col-md-6">
+                    <img class="pizzaImg" src="img/6.jpg">
+                    <div>
+                        <p>Amber Pizza</p>
+                        <P>$3.00</P>
+                    </div>
+                    <button>ADD</button>
+                </div>
+                <div class="pizza" class="col-sm-12 col-md-6">
+                    <img class="pizzaImg" src="img/1.jpg">
+                    <div>
+                        <p>Link Pizza</p>
+                        <P>$3.00</P>
+                    </div>
+                    <button>ADD</button>
+                </div>
+                <div class="pizza" class="col-sm-12 col-md-6">
+                    <img class="pizzaImg" src="img/2.jpg">
+                    <div>
+                        <p>Sugar Pizza</p>
+                        <P>$3.00</P>
+                    </div>
+                    <button>ADD</button>
+                </div>
+            </div>
         </div>
-    </header>
-    <div id="pizzaList">
-        <p class="fullMenu">Full Menu</p>
-        <div id="list" class="row justify-content-center">
-            <div class="pizza" class="col-sm-12 col-md-6">
-                <img class="pizzaImg" src="img/6.jpg">
-                <div>
-                    <p>Amber Pizza</p>
-                    <P>$3.00</P>
-                </div>
-                <button>ADD</button>
+        <div id="logIn" class="hide">
+            <div id="overLay">
             </div>
-            <div class="pizza" class="col-sm-12 col-md-6">
-                <img class="pizzaImg" src="img/1.jpg">
-                <div>
-                    <p>Link Pizza</p>
-                    <P>$3.00</P>
-                </div>
-                <button>ADD</button>
-            </div>
-            <div class="pizza" class="col-sm-12 col-md-6">
-                <img class="pizzaImg" src="img/2.jpg">
-                <div>
-                    <p>Sugar Pizza</p>
-                    <P>$3.00</P>
-                </div>
-                <button>ADD</button>
+            <div id="logInWindow">
+                <p id="logeTitle">Please loge in to see more!</p>
+                <p>E-maile: </p>
+                <input type="text">
+                <p>Password</p>
+                <input type="password">
+                <button id="logInButton">Loge in</button>
             </div>
         </div>
     </div>
-    <div id="logIn" class="hide">
-        <div id="overLay">
-        </div>
-        <div id="logInWindow">
-            <p id="logeTitle">Please loge in to see more!</p>
-            <p>E-maile: </p>
-            <input type="text">
-            <p>Password</p>
-            <input type="password">
-            <button id="logInButton">Loge in</button>
+    <div id="staffPage">
+        <nav id="staffNav">
+            <div class="navTitle">
+                <p>Link to Pizza</p>
+            </div>
+            <div class="shop">
+                <p>Pizzas</p>
+                <p>Ingredients</p>
+                <p>Orders</p>
+            </div>
+            <div class="people">
+                <p>Change Password</p>
+                <p>Log Out</p>
+            </div>
+        </nav>
+        <div id="staffContent">
+            <div class="contentTitle">
+                <p>Pizzas</p>
+            </div>
+            <div class="contentList">
+                <div id="listPage">
+                    <div class="staffLis">
+                        <p>Canadian Pizza</p>
+                        <div class="edit">
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </div>
+                    </div>
+                    <div class="staffLis">
+                        <p>Canadian Pizza</p>
+                        <div class="edit">
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </div>
+                    </div>
+                    <div class="staffLis">
+                        <p>Canadian Pizza</p>
+                        <div class="edit">
+                            <i class="far fa-edit"></i>
+                            <i class="far fa-trash-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/tinyshell-min.js"></script>
