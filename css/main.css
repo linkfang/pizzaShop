@@ -8,6 +8,7 @@ body {
     width: 100vw;
     overflow-x: hidden;
     font-family: Quicksand, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
 }
 
 p{
@@ -192,7 +193,7 @@ header p:nth-child(1){
     height: 4rem;
     display: flex;
     align-items: center;
-    background-color: rgb(70, 102, 102);
+    background-color: hsla(178, 35%, 28%, 1.0);
 }
 
 .navTitle p{
@@ -236,24 +237,24 @@ header p:nth-child(1){
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 3rem;
+    height: 3.5rem;
 }
 
 .staffLis:nth-child(even){
-    background-color: rgb(245, 249, 250)
+    background-color: hsla(178, 20%, 95%, 1.0);
 }
 
 .staffLis p{
-    margin-left: 1rem;
+    margin-left: 1.75rem;
 }
 
 .staffLis div{
-    margin-right: 1rem;
+    margin-right: 1.75rem;
     opacity: 0.7;
 }
 
 .staffLis div{
-    width: 2.5rem;
+    width: 4rem;
     display: flex;
     justify-content: space-between;
 }
