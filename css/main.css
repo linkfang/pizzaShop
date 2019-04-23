@@ -154,7 +154,7 @@ header p:nth-child(1){
     object-fit: cover;
 }
 
-/*      Staff Pizza        */
+/************   Staff Pizza   ************/
 
 #staffPage{
     display: grid;
@@ -181,15 +181,18 @@ header p:nth-child(1){
     padding: 0.65rem 2rem;
     margin: 0.35rem 0;
     border-left: 3px solid hsla(178, 35%, 20%, 0);
+    transition: 0.3s all ease-out;
 }
 
 #staffNav .shop p:hover,#staffNav .people p:hover{
     background-color: hsla(178, 35%, 20%, 1.0);
     cursor: pointer;
+    transition: 0.3s all ease-out;
 }
 
 .navTitle{
     font-weight: 700;
+    font-size: 1.6rem;
     height: 4rem;
     display: flex;
     align-items: center;
@@ -198,6 +201,7 @@ header p:nth-child(1){
 
 .navTitle p{
     margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 #staffNav img{
@@ -210,6 +214,7 @@ header p:nth-child(1){
 .highlight{
     border-left: 3px solid white !important;
     background-color: hsla(178, 35%, 20%, 1.0);
+    transition: 0.5s all ease-out !important;
 }
 
 #staffContent{
@@ -218,6 +223,7 @@ header p:nth-child(1){
 
 .contentTitle{
     font-weight: 700;
+    font-size: 1.6rem;
     height: 4rem;
     display: flex;
     align-items: center;

@@ -9,9 +9,10 @@ let ALPizza = {
     logIn: function(){
         document.getElementById('logIn').classList.add('hide');
     },
-    getDate: function(ev){
+    getDate: function(){
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
+        document.querySelector('.contentTitle p').textContent = this.textContent;
     }
 }
 
