@@ -8,7 +8,8 @@ let ALPizza = {
         document.getElementById('logInButton').addEventListener('click', ALPizza.logIn);
         document.querySelectorAll('.option').forEach(item => item.addEventListener('click', ALPizza.getDate));
         document.getElementById('add').addEventListener('click', ALPizza.addData);
-        document.querySelector('.pizzaAdd').addEventListener('click', ALPizza.saveData);
+        document.querySelector('.pizzaAdd').addEventListener('click', ALPizza.savePizza);
+        document.querySelector('.ingredientAdd').addEventListener('click', ALPizza.saveIngredients);
     },
     logIn: function () {
         document.getElementById('logIn').classList.add('hide');
@@ -74,6 +75,7 @@ let ALPizza = {
     },
     addData:function(){
         document.querySelector('.contentList').classList.add('hide');
+        console.log(ALPizza.option);
 
         if (ALPizza.option == "pizzas"){
             document.querySelector('.pizzaEdit').classList.remove('hide');
@@ -113,12 +115,12 @@ let ALPizza = {
 
             })
             .catch(err=>console.log(err))
-        } else if (ALPizza.option == "ingrediens"){
+        } else if (ALPizza.option == "ingredients"){
             document.querySelector('.ingredientEdit').classList.remove('hide');
 
         }
     },
-    saveData:function(){
+    savePizza:function(){
         document.querySelector('.contentList').classList.remove('hide');
         document.querySelector('.pizzaEdit').classList.add('hide');
 
@@ -159,9 +161,41 @@ let ALPizza = {
             imageUrl: img,
             ingredients: ingredients,
             extraToppings: exIngredients
-        }
+        };
 
         console.log(newPizza);
+    },
+    saveIngredients:function(){
+        document.querySelector('.contentList').classList.remove('hide');
+        document.querySelector('.ingredientEdit').classList.add('hide');
+
+        let name = document.querySelector('.ingredientNameCtn input').value;
+        let price = document.querySelector('.ingredientPriceCtn input').value;
+        let quantity = document.querySelector('.ingredientQuantityCtn input').value;
+        let glutenFree;
+        document.getElementsByName('GlutenIn').forEach(item => {
+            if(item.checked){
+                glutenFree = item.value == "ture" ? true : false;
+            }
+        });
+        let img = document.querySelector('.ingredientImageCtn input').value;
+        let categorie = [];
+        document.getElementsByName('categories').forEach(item => {
+            if(item.checked){
+                categorie.push(item.value);
+            }
+        });
+
+        let newIngredient = {
+            name: name,
+            price: price,
+            quantity: quantity,
+            isGlutenFree: glutenFree,
+            imageUrl: img,
+            categories: categorie
+        };
+
+        console.log(newIngredient);
     }
 }
 
