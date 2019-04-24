@@ -264,3 +264,70 @@ header p:nth-child(1){
     display: flex;
     justify-content: space-between;
 }
+
+
+/************ Pizza Edit Page ************/
+
+.pizzaEdit{
+    margin: 2rem;
+    background-color: white;
+}
+
+.pizzaContainer{
+    margin: 1.75rem;
+    display: grid;
+    grid-column-gap: 1.75rem;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    grid-template:
+    "a b c"
+    "d e f"
+    "g g g"
+}
+
+.pizzaNameCtn{
+    grid-area: a;
+}
+
+.pizzaPriceCtn{
+    grid-area: b;
+}
+
+.pizzaImageCtn{
+    grid-area: c;
+}
+
+.pizzaSizeCtn{
+    grid-area: d;
+}
+
+.pizzaGlutenCtn{
+    grid-area: e;
+}
+
+.pizzaIngredientsCtn{
+    grid-area: g;
+}
+
+.pizzaExtraCtn{
+    grid-area: f;
+}
+
+.pizzaEdit p{
+    margin: 0.3rem 0;
+    padding-top: 1rem;
+}
+
+.pizzaEdit p:last-child{
+    padding-bottom: 1.5rem;
+}
+
+.pizzaNameCtn input,
+.pizzaPriceCtn input,
+.pizzaImageCtn input
+{
+    width: 100%;
+}
+
+.form-radio {
+    margin-right: 1.25rem;
+}

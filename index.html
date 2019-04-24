@@ -118,6 +118,88 @@
                     </div>
                 </div>
             </div>
+            <div class="pizzaEdit">
+                <div class="pizzaContainer">
+                    <div class="pizzaNameCtn">
+                        <p class="pizzaName">Name</p>
+                        <input type="text" placeholder="Pizza's name">
+                    </div>
+
+                    <div class="pizzaPriceCtn">
+                        <p class="pizzaPrice">Price</p>
+                        <input type="text" placeholder="Pizza's price">
+                    </div>
+
+                    <div class="pizzaSizeCtn">
+                        <p class="pizzaSize">Size</p>
+                        <div class="form-row ml-1">
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="size" type="radio" value="SmallP">
+                                <label class="form-radio-label" for="SmallP">
+                                    Small
+                                </label>
+                            </div>
+
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="size" type="radio" value="MediumP" checked>
+                                <label class="form-radio-label" for="MediumP">
+                                    Medium
+                                </label>
+                            </div>
+
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="size" type="radio" value="LargeP">
+                                <label class="form-radio-label" for="MediumP">
+                                    Large
+                                </label>
+                            </div>
+
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="size" type="radio" value="ExtraLargeP">
+                                <label class="form-radio-label" for="MediumP">
+                                    Extra Large
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pizzaGlutenCtn">
+                        <p class="pizzaGluten">Gluten Free</p>
+                        <div class="form-row ml-1">
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="Gluten" type="radio" value="YesP">
+                                <label class="form-radio-label" for="YesP">
+                                    Yes
+                                </label>
+                            </div>
+
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="Gluten" type="radio" value="NoP" checked>
+                                <label class="form-radio-label" for="NoP">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="pizzaImageCtn">
+                        <p>Image URL</p>
+                        <input type="url" placeholder="Image URL">
+                    </div>
+
+                    <div class="pizzaIngredientsCtn">
+                        <p class="pizzaIngredients">Ingredients</p>
+                    </div>
+
+                    <div class="pizzaExtraCtn">
+                        <p class="pizzaExtra">Extra Toppings</p>
+                    </div>
+                </div>
+
+                <button class="pizzaAdd">Submit</button>
+
+            </div>
         </div>
     </div>
     <script src="js/tinyshell-min.js"></script>
