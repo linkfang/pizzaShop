@@ -226,6 +226,7 @@ header p:nth-child(1){
     font-size: 1.6rem;
     height: 4rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
 }
@@ -237,6 +238,18 @@ header p:nth-child(1){
 
 .contentTitle p{
     margin-left: 2rem;
+}
+
+.contentTitle a{
+    color: hsla(178,65%, 40%, 1.0) !important;
+    font-weight: 100;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+
+.contentTitle a:hover{
+    color: hsla(178, 35%, 40%, 1.0) !important;
+    cursor: pointer;
 }
 
 .staffLis{
@@ -315,6 +328,7 @@ header p:nth-child(1){
 .pizzaEdit p{
     margin: 0.3rem 0;
     padding-top: 1rem;
+    font-weight: 700;
 }
 
 .pizzaEdit p:last-child{
