@@ -119,7 +119,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pizzaEdit hide">
+            <div class="pizzaEdit editForm hide">
                 <div class="pizzaContainer">
                     <div class="pizzaNameCtn">
                         <p class="pizzaName">Name</p>
@@ -191,20 +191,138 @@
 
                     <div class="pizzaIngredientsCtn">
                         <p class="pizzaIngredients">Ingredients</p>
+                        <div class="form-row ml-1"></div>
                     </div>
 
                     <div class="pizzaExtraCtn">
                         <p class="pizzaExtra">Extra Toppings</p>
+                        <div class="form-row ml-1"></div>
                     </div>
                 </div>
 
                 <button class="pizzaAdd">Submit</button>
 
             </div>
+
+
+            <div class="ingredientEdit editForm">
+                <div class="ingredientContainer">
+                    <div class="ingredientNameCtn">
+                        <p class="ingredientName">Name</p>
+                        <input type="text" placeholder="Ingredient's name">
+                    </div>
+
+                    <div class="ingredientPriceCtn">
+                        <p class="ingredientPrice">Price</p>
+                        <input type="number" placeholder="Ingredient's price">
+                    </div>
+
+                    <div class="ingredientImageCtn">
+                        <p>Image URL</p>
+                        <input type="url" placeholder="Image URL">
+                    </div>
+
+                    <div class="ingredientQuantityCtn">
+                        <p>Quantity</p>
+                        <input type="number" placeholder="Ingredient's quantity">
+                    </div>
+
+                    <div class="ingredientCateCtn">
+                        <p class="ingredientCate">Categories</p>
+                        <div class="form-row ml-1">
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="meat"
+                                    id="meatIn">
+                                <label class="form-check-label" for="meatIn">
+                                    Meat
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="spicy"
+                                    id="spicyIn">
+                                <label class="form-check-label" for="spicyIn">
+                                    Spicy
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="vegitarian"
+                                    id="vegitarianIn">
+                                <label class="form-check-label" for="vegitarianIn">
+                                    Vegitarian
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="vegan"
+                                    id="veganIn">
+                                <label class="form-check-label" for="veganIn">
+                                    Vegan
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="halal"
+                                    id="halalIn">
+                                <label class="form-check-label" for="halalIn">
+                                    Halal
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="kosher"
+                                    id="kosherIn">
+                                <label class="form-check-label" for="kosherIn">
+                                    Kosher
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="cheese"
+                                    id="cheeseIn">
+                                <label class="form-check-label" for="cheeseIn">
+                                    Cheese
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <input class="form-check-input" name="categories" type="checkbox" value="seasonings"
+                                    id="seasoningsIn">
+                                <label class="form-check-label" for="seasoningsIn">
+                                    Seasonings
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="ingredientGlutenCtn">
+                        <p class="ingredientGluten">Gluten Free</p>
+                        <div class="form-row ml-1">
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="GlutenIn" type="radio" value="true" id="yesIn">
+                                <label class="form-radio-label" for="yesIn">
+                                    Yes
+                                </label>
+                            </div>
+
+                            <div class="form-radio">
+                                <input class="form-radio-input" name="GlutenIn" type="radio" value="false" id="noIn"
+                                    checked>
+                                <label class="form-radio-label" for="noIn">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="ingredientAdd">Submit</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <script src="js/tinyshell-min.js"></script>
-    <script src="js/main.js"></script>
+        <script src="js/tinyshell-min.js"></script>
+        <script src="js/main.js"></script>
 </body>
 
 

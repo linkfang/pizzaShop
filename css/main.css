@@ -286,7 +286,8 @@ header p:nth-child(1){
     background-color: white;
 }
 
-.pizzaContainer{
+.pizzaContainer,
+.ingredientContainer{
     margin: 1.75rem;
     display: grid;
     grid-column-gap: 1.75rem;
@@ -337,11 +338,24 @@ header p:nth-child(1){
 
 .pizzaNameCtn input,
 .pizzaPriceCtn input,
-.pizzaImageCtn input
+.pizzaImageCtn input,
+.ingredientNameCtn input,
+.ingredientPriceCtn input,
+.ingredientImageCtn input,
+.ingredientQuantityCtn input
 {
     width: 100%;
 }
 
 .form-radio {
     margin-right: 1.25rem;
+}
+
+
+
+/************ Ingredient Edit Page ************/
+.ingredientContainer{
+    grid-template:
+    "a b c"
+    "d e f"
 }
