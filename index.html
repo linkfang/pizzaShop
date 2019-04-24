@@ -119,45 +119,45 @@
                     </div>
                 </div>
             </div>
-            <div class="pizzaEdit editForm hide">
+            <div class="pizzaEdit editForm">
                 <div class="pizzaContainer">
                     <div class="pizzaNameCtn">
                         <p class="pizzaName">Name</p>
-                        <input type="text" placeholder="Pizza's name">
+                        <input type="text" placeholder=" Pizza's name" required="required">
                     </div>
 
                     <div class="pizzaPriceCtn">
                         <p class="pizzaPrice">Price</p>
-                        <input type="text" placeholder="Pizza's price">
+                        <input type="number" placeholder=" Pizza's price">
                     </div>
 
                     <div class="pizzaSizeCtn">
                         <p class="pizzaSize">Size</p>
                         <div class="form-row ml-1">
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="SmallP">
-                                <label class="form-radio-label" for="SmallP">
+                                <input class="form-radio-input" name="size" type="radio" value="small" id="smallPi" checked>
+                                <label class="form-radio-label" for="smallPi">
                                     Small
                                 </label>
                             </div>
 
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="MediumP" checked>
-                                <label class="form-radio-label" for="MediumP">
+                                <input class="form-radio-input" name="size" type="radio" value="medium" id="mediumPi">
+                                <label class="form-radio-label" for="mediumPi">
                                     Medium
                                 </label>
                             </div>
 
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="LargeP">
-                                <label class="form-radio-label" for="MediumP">
+                                <input class="form-radio-input" name="size" type="radio" value="large" id="largePi">
+                                <label class="form-radio-label" for="largePi">
                                     Large
                                 </label>
                             </div>
 
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="ExtraLargeP">
-                                <label class="form-radio-label" for="MediumP">
+                                <input class="form-radio-input" name="size" type="radio" value="extra large" id="extraLargePi">
+                                <label class="form-radio-label" for="extraLargePi">
                                     Extra Large
                                 </label>
                             </div>
@@ -186,7 +186,7 @@
 
                     <div class="pizzaImageCtn">
                         <p>Image URL</p>
-                        <input type="url" placeholder="Image URL">
+                        <input type="url" placeholder=" Image URL">
                     </div>
 
                     <div class="pizzaIngredientsCtn">
@@ -201,7 +201,6 @@
                 </div>
 
                 <button class="pizzaAdd">Submit</button>
-
             </div>
 
 
@@ -209,22 +208,22 @@
                 <div class="ingredientContainer">
                     <div class="ingredientNameCtn">
                         <p class="ingredientName">Name</p>
-                        <input type="text" placeholder="Ingredient's name">
+                        <input type="text" placeholder=" Ingredient's name">
                     </div>
 
                     <div class="ingredientPriceCtn">
                         <p class="ingredientPrice">Price</p>
-                        <input type="number" placeholder="Ingredient's price">
+                        <input type="number" placeholder=" Ingredient's price">
                     </div>
 
                     <div class="ingredientImageCtn">
                         <p>Image URL</p>
-                        <input type="url" placeholder="Image URL">
+                        <input type="url" placeholder=" Image URL">
                     </div>
 
                     <div class="ingredientQuantityCtn">
                         <p>Quantity</p>
-                        <input type="number" placeholder="Ingredient's quantity">
+                        <input type="number" placeholder=" Ingredient's quantity">
                     </div>
 
                     <div class="ingredientCateCtn">
@@ -316,9 +315,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <button class="ingredientAdd">Submit</button>
                 </div>
+                <button class="ingredientAdd">Submit</button>
             </div>
         </div>
         <script src="js/tinyshell-min.js"></script>

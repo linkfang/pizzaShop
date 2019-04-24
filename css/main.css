@@ -281,7 +281,8 @@ header p:nth-child(1){
 
 /************ Pizza Edit Page ************/
 
-.pizzaEdit{
+.pizzaEdit,
+.ingredientEdit{
     margin: 2rem;
     background-color: white;
 }
@@ -326,7 +327,8 @@ header p:nth-child(1){
     grid-area: f;
 }
 
-.pizzaEdit p{
+.pizzaEdit p,
+.ingredientEdit p{
     margin: 0.3rem 0;
     padding-top: 1rem;
     font-weight: 700;
@@ -347,7 +349,8 @@ header p:nth-child(1){
     width: 100%;
 }
 
-.form-radio {
+.form-radio,
+.form-check {
     margin-right: 1.25rem;
 }
 
@@ -358,4 +361,8 @@ header p:nth-child(1){
     grid-template:
     "a b c"
     "d e f"
+}
+
+.form-check input{
+    height: 1.3rem;
 }
