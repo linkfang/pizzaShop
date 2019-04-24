@@ -282,20 +282,23 @@ header p:nth-child(1){
 /************ Pizza Edit Page ************/
 
 .pizzaEdit,
-.ingredientEdit{
+.ingredientEdit,
+.changePasswordPage{
     margin: 2rem;
     background-color: white;
 }
 
 .pizzaContainer,
-.ingredientContainer{
+.ingredientContainer,
+.changePasswordCtn{
     margin: 1.75rem;
     display: grid;
     grid-column-gap: 1.75rem;
     grid-template-columns: 1fr 1fr 1fr !important;
     grid-template:
     "a b c"
-    "d e f"
+    "d d e"
+    "f f f"
     "g g g"
 }
 
@@ -365,4 +368,16 @@ header p:nth-child(1){
 
 .form-check input{
     height: 1.3rem;
+}
+
+
+/************ Change Password Page ************/
+
+.changePasswordCtn{
+    margin: 1.75rem;
+    display: grid;
+    grid-column-gap: 1.75rem;
+    grid-template-columns: 1fr !important;
+    grid-template:
+    "a"
 }

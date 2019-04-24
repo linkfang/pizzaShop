@@ -135,7 +135,8 @@
                         <p class="pizzaSize">Size</p>
                         <div class="form-row ml-1">
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="small" id="smallPi" checked>
+                                <input class="form-radio-input" name="size" type="radio" value="small" id="smallPi"
+                                    checked>
                                 <label class="form-radio-label" for="smallPi">
                                     Small
                                 </label>
@@ -156,7 +157,8 @@
                             </div>
 
                             <div class="form-radio">
-                                <input class="form-radio-input" name="size" type="radio" value="extra large" id="extraLargePi">
+                                <input class="form-radio-input" name="size" type="radio" value="extra large"
+                                    id="extraLargePi">
                                 <label class="form-radio-label" for="extraLargePi">
                                     Extra Large
                                 </label>
@@ -198,11 +200,13 @@
                         <p class="pizzaExtra">Extra Toppings</p>
                         <div class="form-row ml-1"></div>
                     </div>
+
+                    <div class="buttonCtn ingredientBtnCtn">
+                            <button class="cancelPizza cancelBtn">Cancel</button>
+                            <button class="pizzaAdd">Submit</button>
+                    </div>
                 </div>
-
-                <button class="pizzaAdd">Submit</button>
             </div>
-
 
             <div class="ingredientEdit editForm">
                 <div class="ingredientContainer">
@@ -315,9 +319,37 @@
                             </div>
                         </div>
                     </div>
+                    <div class="buttonCtn ingredientBtnCtn">
+                        <button class="cancelIngredient cancelBtn">Cancel</button>
+                        <button class="ingredientAdd">Submit</button>
+                    </div>
                 </div>
-                <button class="ingredientAdd">Submit</button>
             </div>
+
+            <div class="changePasswordPage">
+                <div class="changePasswordCtn">
+                    <div class="originalPasswordCtn">
+                        <p class="originalPassword">Original Password</p>
+                        <input type="password" required="required">
+                    </div>
+
+                    <div class="newPasswordCtn">
+                        <p class="newPassword">New Password</p>
+                        <input type="password" required="required">
+                    </div>
+
+                    <div class="confirmPasswordCtn">
+                        <p class="confirmPassword">Confirm Password</p>
+                        <input type="password" required="required">
+                    </div>
+
+                    <div>
+                        <button class="cancelPassword cancelBtn">Cancel</button>
+                        <button class="submitPassword">Submit</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <script src="js/tinyshell-min.js"></script>
         <script src="js/main.js"></script>
