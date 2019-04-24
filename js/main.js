@@ -113,6 +113,9 @@ let ALPizza = {
 
             })
             .catch(err=>console.log(err))
+        } else if (ALPizza.option == "ingrediens"){
+            document.querySelector('.ingredientEdit').classList.remove('hide');
+
         }
     },
     saveData:function(){
