@@ -61,20 +61,20 @@
                 </div>
             </div>
         </div>
-        <div id="logIn" class="hide">
+        <div id="logIn" class="">
             <div id="overLay">
             </div>
             <div id="logInWindow">
                 <p id="logeTitle">Please loge in to see more!</p>
-                <p>E-maile: </p>
+                <p>E-mail: </p>
                 <input type="text">
                 <p>Password</p>
                 <input type="password">
-                <button id="logInButton">Loge in</button>
+                <button id="logInButton">Log in</button>
             </div>
         </div>
     </div>
-    <div id="staffPage">
+    <div id="staffPage" class=""> 
         <nav id="staffNav">
             <div class="navTitle">
                 <p>Link to Pizza</p>
@@ -201,7 +201,7 @@
                         <div class="form-row ml-1"></div>
                     </div>
 
-                    <div class="buttonCtn ingredientBtnCtn">
+                    <div class="buttonCtn pizzaBtnCtn">
                             <button class="cancelPizza cancelBtn">Cancel</button>
                             <button class="pizzaAdd">Submit</button>
                     </div>
@@ -212,7 +212,7 @@
                 <div class="ingredientContainer">
                     <div class="ingredientNameCtn">
                         <p class="ingredientName">Name</p>
-                        <input type="text" placeholder=" Ingredient's name">
+                        <input type="text" placeholder=" Ingredient's name" required="required">
                     </div>
 
                     <div class="ingredientPriceCtn">
@@ -321,7 +321,7 @@
                     </div>
                     <div class="buttonCtn ingredientBtnCtn">
                         <button class="cancelIngredient cancelBtn">Cancel</button>
-                        <button class="ingredientAdd">Submit</button>
+                        <button class="ingredientAdd">Save Ingredient</button>
                     </div>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                         <input type="password" required="required">
                     </div>
 
-                    <div>
+                    <div class="buttonCtn">
                         <button class="cancelPassword cancelBtn">Cancel</button>
                         <button class="submitPassword">Submit</button>
                     </div>
