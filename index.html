@@ -354,35 +354,42 @@
             </div>
 
             <div class="changePasswordPage hide">
-                    <div class="passwordHeader">
+                <div class="flexCtn">
+                    <div class="passwordCardCtn">
+                        <div class="passwordHeader">
                             <p class="userName displayText">First Name Last Name</p>
                             <p class="passwordEmail displayText">someone@email.com</p>
-                            <!-- <p>First Name </p>
-                            <p class="displayText"> User's First Name</p>
-                            <p>Last Name </p>
-                            <p class="displayText"> User's Last Name</p>
-                            <p>E-mail </p>
-                            <p class="displayText"> User's Email</p> -->
                         </div>
-                <div class="changePasswordCtn">
-                    <div class="originalPasswordCtn">
-                        <p class="originalPassword">Original Password</p>
-                        <input type="password" required="required">
-                    </div>
+                        <div class="changePasswordCtn">
+                            <div class="newPasswordCtn">
+                                <p class="newPassword">New Passsword</p>
+                                <div class="form-check changePasswordCheckBox">
+                                    <label class="form-check-label" for="showNewPassword">
+                                        Show Password
+                                    </label>
+                                    <input class="form-check-input" name="showPassword" type="checkbox" value="showNew"
+                                        id="showNewPassword">
+                                </div>
+                                <input type="password" required="required">
+                            </div>
 
-                    <div class="newPasswordCtn">
-                        <p class="newPassword">New Passsword</p>
-                        <input type="password" required="required">
-                    </div>
+                            <div class="confirmPasswordCtn">
+                                <p class="confirmPassword">Confirm New Password</p>
+                                <div class="form-check changePasswordCheckBox">
+                                    <label class="form-check-label" for="showNewPassword">
+                                        Show Password
+                                    </label>
+                                    <input class="form-check-input" name="showPassword" type="checkbox" value="showNew"
+                                        id="showNewPassword">
+                                </div>
+                                <input type="password" required="required">
+                            </div>
 
-                    <div class="confirmPasswordCtn">
-                        <p class="confirmPassword">Confirm Password</p>
-                        <input type="password" required="required">
-                    </div>
+                            <div class="buttonCtn buttonCtnPassword">
+                                <button class="greenBtn submitPassword">Submit</button>
+                            </div>
+                        </div>
 
-                    <div class="buttonCtn">
-                        <button class="cancelPassword cancelBtn">Cancel</button>
-                        <button class="submitPassword">Submit</button>
                     </div>
                 </div>
             </div>
