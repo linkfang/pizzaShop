@@ -239,6 +239,7 @@ height: 50px;
 .fa-bars{
     position: absolute;
     left: 2.1rem;
+    cursor: pointer;
 }
 
 #staffPage{
@@ -254,6 +255,9 @@ height: 50px;
     /* background-color: darkslategrey; */
     background-color: hsla(178, 35%, 24%, 1.0);
     color: white;
+    position: fixed;
+    width: 20vw;
+    z-index: 1000;
 }
 
 #staffNav .shop,#staffNav .people{
@@ -686,11 +690,25 @@ button:focus{
     #staffPage{
         grid-template-columns: 1.8fr 4fr;
     }
+
+    #staffNav{
+        width: calc(1.8/5.8 * 100vw) ;
+    }
 }
 
 @media (max-width: 890px) {
-    #staffNav{
+    #empty{
         display: none;
+    }
+
+    .navTitle{
+        display: none;
+    }
+
+    #staffNav{
+        transform: translateX(-100%);
+        transition: all 0.5s ease-out;
+        min-width: 17rem;
     }
 
     #staffPage{

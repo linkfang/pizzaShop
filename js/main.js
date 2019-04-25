@@ -6,17 +6,22 @@ let ALPizza = {
         ALPizza.addListteners();
     },
     addListteners: function () {
-        window.onresize = function(){
+        window.onresize = function () {
             ALPizza.changeWidth();
         };
+        document.querySelector('.fa-bars').addEventListener('click', ALPizza.showHum);
         document.querySelectorAll('.option').forEach(item => item.addEventListener('click', ALPizza.getData));
         document.getElementById('add').addEventListener('click', ALPizza.addData);
+        document.querySelector('.submitPassword').addEventListener('click', ALPizza.changePass);
         document.querySelector('.pizzaAdd').addEventListener('click', ALPizza.savePizza);
         document.querySelector('.ingredientAdd').addEventListener('click', ALPizza.saveIngredients);
         document.querySelectorAll('.cancelBtn').forEach(item => item.addEventListener('click', ALPizza.back));
         document.getElementById('changePass').addEventListener('click', ALPizza.password);
         document.getElementById('logInButton').addEventListener('click', ALPizza.singIn);
         document.getElementById('logout').addEventListener('click', () => {
+            if (ALPizza.hum) {
+                ALPizza.hideHum();
+            }
             document.getElementById('staffPage').classList.add('hide');
             document.getElementById('humburger').classList.add('hide');
             document.getElementById('logIn').classList.remove('hide');
@@ -64,6 +69,69 @@ let ALPizza = {
             document.getElementById('signUp').classList.add('hide');
         });
         document.getElementById('signUpButton').addEventListener('click', ALPizza.singUp);
+        document.getElementById('staffContent').addEventListener('click', ()=>{
+            if(ALPizza.hum){
+              ALPizza.hideHum()
+            }
+        });
+    },
+    hum: null,
+    showHum: function () {
+        if(ALPizza.hum){
+            ALPizza.hideHum();
+            return;
+        }
+        document.getElementById('staffNav').style.transform = 'translateX(0)';
+        ALPizza.hum = true;
+    },
+    hideHum: function () {
+        document.getElementById('staffNav').style.transform = 'translateX(-100%)';
+        ALPizza.hum = false;
+    },
+    changePass: function () {
+        let newPass = document.querySelector('.newPasswordCtn>input').value;
+        let conPass = document.querySelector('.confirmPasswordCtn>input').value;
+
+        if (newPass != conPass) {
+            alert('The tow passwords are not the same, try again!');
+            return;
+        }
+
+        let url = `${ALPizza.dataURL}/auth/users/me`;
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json;charset=UTF-8');
+
+        if (ALPizza.authToken) {
+            headers.append('Authorization', 'Bearer ' + ALPizza.authToken)
+        }
+
+        let jsonData = JSON.stringify({
+            password: newPass
+        });
+
+        let req = new Request(url, {
+            headers: headers,
+            method: 'PATCH',
+            mode: 'cors',
+            body: jsonData
+        });
+
+        fetch(req)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data)
+                if (data) {
+                    let not = `Added succesfully!`;
+                    ALPizza.not(not);
+                }
+            })
+            .catch(err => {
+                console.error(err.code + ': ' + err.message);
+            })
+
     },
     singUp: function () {
         let firstName = document.getElementById('signUpFirstName').value;
@@ -112,6 +180,11 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
+                if (data.errors) {
+                    alert(data.errors[0].title + " Please try again!");
+                    return;
+                }
+                document.querySelector('#singInB').dispatchEvent(new MouseEvent('click'));
             })
             .catch(err => console.log(err));
 
@@ -155,7 +228,7 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
-                if(data.errors){
+                if (data.errors) {
                     alert(data.errors[0].title + " Please try again!");
                     return;
                 }
@@ -169,6 +242,9 @@ let ALPizza = {
 
     },
     password: function () {
+        if (ALPizza.hum) {
+            ALPizza.hideHum();
+        }
         let showedPage = document.querySelector('.show');
         showedPage.classList.add('hide');
         showedPage.classList.remove('show');
@@ -177,13 +253,15 @@ let ALPizza = {
         this.classList.add('highlight');
         document.querySelector('.contentTitle p').textContent = this.textContent;
         document.getElementById('add').classList.add('hide');
-        // history.pushState(null, null, `${ALPizza.basic}/changepassword`);
+        // history.pushState(null, null, `${ALPizza.basic}/changepassword`)
     },
     back: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-
     },
     getData: function () {
+        if (ALPizza.hum) {
+            ALPizza.hideHum();
+        }
         document.getElementById('add').classList.remove('hide');
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
@@ -413,7 +491,7 @@ let ALPizza = {
         document.getElementsByName('Gluten').forEach(item => {
             if (item.checked) {
                 glutenFree = item.value;
-        }
+            }
         });
 
         let ingredients = [];
@@ -448,7 +526,6 @@ let ALPizza = {
         }
     },
     saveIngredients: function () {
-        document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
 
         let name = document.querySelector('.ingredientNameCtn input').value;
         let price = document.querySelector('.ingredientPriceCtn input').value;
@@ -456,7 +533,7 @@ let ALPizza = {
         let glutenFree;
         document.getElementsByName('GlutenIn').forEach(item => {
             if (item.checked) {
-                    glutenFree = item.value;
+                glutenFree = item.value;
             }
         });
         let img = document.querySelector('.ingredientImageCtn input').value;
@@ -492,7 +569,7 @@ let ALPizza = {
         let url = `${ALPizza.dataURL}/api/${ALPizza.option}`;
 
         if (opt == 'PUT') {
-            url = `${ALPizza.dataURL}/api/${ALPizza.option}:${id}`;
+            url = `${ALPizza.dataURL}/api/${ALPizza.option}/${id}`;
         }
 
         const headers = new Headers();
@@ -516,6 +593,8 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data)
+                document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+
                 if (data) {
                     let not = `Added succesfully!`;
                     ALPizza.not(not);
@@ -528,16 +607,24 @@ let ALPizza = {
     not: function (not) {
         alert(not);
     },
-    changeWidth: function(){
+    changeWidth: function () {
         let width = window.innerWidth;
 
-        if(width < 550){
+        if (width < 550) {
             document.querySelector('#listTitle p:nth-child(3)').classList.add('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.add('hide'));
-            // document.getElementById('listTitle')
+            document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr';
+            if(document.querySelector('.staffLis')){
+            document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr';
+        }
+
         } else {
             document.querySelector('#listTitle p:nth-child(3)').classList.remove('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.remove('hide'));
+            document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+            if(document.querySelector('.staffLis')){
+                document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+            }
         }
     }
 }
