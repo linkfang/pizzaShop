@@ -541,3 +541,16 @@ input:focus{
     border: 1.5px solid hsla(178, 35%, 30%, 1.0);
     transition: all 0.5s ease-out;
 }
+
+button{
+    height: 36px;
+    border-radius: 3px;
+    transition: all 0.5s ease-out;
+}
+
+.orangeBtn:hover{
+    background-color:rgb(235, 113, 0) !important;
+    transition: all 0.5s ease-out;
+}
+
+
