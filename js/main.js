@@ -6,7 +6,6 @@ let ALPizza = {
         ALPizza.addListteners();
     },
     addListteners: function () {
-        document.getElementById('logInButton').addEventListener('click', ALPizza.logIn);
         document.querySelectorAll('.option').forEach(item => item.addEventListener('click', ALPizza.getDate));
         document.getElementById('add').addEventListener('click', ALPizza.addData);
         document.querySelector('.pizzaAdd').addEventListener('click', ALPizza.savePizza);
@@ -14,9 +13,10 @@ let ALPizza = {
         document.querySelectorAll('.cancelBtn').forEach(item => item.addEventListener('click', ALPizza.back));
         document.getElementById('changePass').addEventListener('click', ALPizza.password);
         document.getElementById('logInButton').addEventListener('click', ALPizza.singIn);
-        document.getElementById('logout').addEventListener('click', ()=>{
+        document.getElementById('logout').addEventListener('click', () => {
             document.getElementById('staffPage').classList.add('hide');
             document.getElementById('logIn').classList.remove('hide');
+            document.getElementById('logInPassword').value = '';
         });
         document.querySelector('.fa-eye-slash.U').addEventListener('click', () => {
             document.getElementById('signUpPassword').type = 'text';
@@ -38,22 +38,77 @@ let ALPizza = {
             document.querySelector('.fa-eye-slash.hide.I').classList.remove('hide');
             document.querySelector('.fa-eye.I').classList.add('hide');
         });
-        document.getElementById('singUpB').addEventListener('click', ()=>{
+        document.getElementById('singUpB').addEventListener('click', () => {
             document.getElementById('logInPassword').type = 'password';
             document.getElementById('signUpPassword').type = 'password';
             document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
-            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));  
+            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));
             document.getElementById('logIn').classList.add('hide');
             document.getElementById('signUp').classList.remove('hide');
+            document.getElementById('signUpFirstName').value = '';
+            document.getElementById('signUpLastName').value = '';
+            document.getElementById('signUpEmail').value = '';
+            document.getElementById('signUpPassword').value = '';
         });
-        document.getElementById('singInB').addEventListener('click', ()=>{
+        document.getElementById('singInB').addEventListener('click', () => {
             document.getElementById('logInPassword').type = 'password';
             document.getElementById('signUpPassword').type = 'password';
+            document.getElementById('logInPassword').value = '';
             document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
-            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));            
+            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));
             document.getElementById('logIn').classList.remove('hide');
             document.getElementById('signUp').classList.add('hide');
         });
+        document.getElementById('signUpButton').addEventListener('click', ALPizza.singUp);
+    },
+    singUp: function () {
+        let firstName = document.getElementById('signUpFirstName').value;
+        let lastName = document.getElementById('signUpLastName').value;
+        let email = document.getElementById('signUpEmail').value;
+        let password = document.getElementById('signUpPassword').value;
+        let userType;
+        document.querySelectorAll('.userTypeSelect option').forEach((item) => {
+            if (item.selected) {
+                if (item.value) {
+                    userType = true;
+                } else {
+                    userType = false;
+                }
+            }
+        });
+
+        let newUser = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            isStaff: userType
+        }
+
+        // const headers = new Headers();
+        // headers.append('Content-Type', 'application/json;charset=UTF-8');
+
+        // let url = `${ALPizza.dataURL}/auth/users`;
+
+        // let jsonData = JSON.stringify(newUser);
+
+        // let req = new Request(url, {
+        //     headers: headers,
+        //     method: 'POST',
+        //     mode: 'cors',
+        //     credentials: 'include',
+        //     body: jsonData
+        // });
+
+        // fetch(req)
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (data) {
+        //         console.log(data);
+        //     })
+        //     .catch(err => console.log(err));
+
     },
     singIn: function () {
         let email = document.getElementById('logInEmail').value;
@@ -71,7 +126,8 @@ let ALPizza = {
 
         document.getElementById('staffPage').classList.remove('hide');
         document.getElementById('logIn').classList.add('hide');
-        document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+        document.querySelector('.shop p:nth-child(1)').dispatchEvent(new MouseEvent('click'));
+
 
         // let user = {
         //     email: email,
@@ -83,7 +139,7 @@ let ALPizza = {
         //         return response.json();
         //     })
         //     .then(function (data) {
-
+        //         ALPizza.authToken = data.data.token;
         //     })
         //     .catch(err => console.log(err));
     },
@@ -94,16 +150,16 @@ let ALPizza = {
         document.querySelector('.changePasswordPage').classList.add('show');
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
+        document.querySelector('.contentTitle p').textContent = this.textContent;
+        document.getElementById('add').classList.add('hide');
         // history.pushState(null, null, `${ALPizza.basic}/changepassword`);
     },
     back: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
 
     },
-    logIn: function () {
-        document.getElementById('logIn').classList.remove('show');
-    },
     getDate: function () {
+        document.getElementById('add').classList.remove('hide');
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
         document.querySelector('.changePasswordPage').classList.remove('show');
@@ -175,6 +231,31 @@ let ALPizza = {
     },
     deleteData: function (id) {
         console.log(id);
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json;charset=UTF-8');
+
+        if (ALPizza.authToken) {
+            headers.append('Authorization', 'Bearer ' + authToken)
+        }
+
+        let url = `${ALPizza.dataURL}/api/${ALPizza.option}:${id}`;
+
+        let req = new Request(url, {
+            headers: headers,
+            method: 'DELETE',
+            mode: 'cors',
+            credentials: 'include',
+        });
+
+        fetch(req)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+            })
+            .catch(err => console.log(err));
     },
     addData: function (item) {
         document.querySelector('.contentList').classList.remove('show');
@@ -392,6 +473,7 @@ let ALPizza = {
             credentials: 'include',
             body: jsonData
         });
+
         fetch(req)
             .then(function (response) {
                 return response.json();
