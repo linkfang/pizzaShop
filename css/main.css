@@ -211,7 +211,7 @@ header p:nth-child(1){
     object-fit: cover;
 }
 
-#singUp{
+#singUpB,#singInB{
     font-size: 0.8rem;
     color: rgb(241, 134, 34);
     text-decoration:underline;
@@ -219,7 +219,7 @@ header p:nth-child(1){
     margin-top: 1rem;
 }
 
-#singUp:hover{
+#singUpB:hover,#singInB:hover{
     cursor: pointer;
     color: rgb(252, 122, 0);
 }

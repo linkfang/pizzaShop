@@ -18,17 +18,41 @@ let ALPizza = {
             document.getElementById('staffPage').classList.add('hide');
             document.getElementById('logIn').classList.remove('hide');
         });
-        document.querySelector('.fa-eye-slash').addEventListener('click', () => {
-            console.log('ss');
-            document.getElementById('logInPassword').type = 'text';
-            document.querySelector('.fa-eye.hide').classList.remove('hide');
-            document.querySelector('.fa-eye-slash').classList.add('hide');
+        document.querySelector('.fa-eye-slash.U').addEventListener('click', () => {
+            document.getElementById('signUpPassword').type = 'text';
+            document.querySelector('.fa-eye.hide.U').classList.remove('hide');
+            document.querySelector('.fa-eye-slash.U').classList.add('hide');
         });
-        document.querySelector('.fa-eye').addEventListener('click', () => {
-            console.log(document.getElementById('logInPassword').type)
+        document.querySelector('.fa-eye.U').addEventListener('click', () => {
+            document.getElementById('signUpPassword').type = 'password';
+            document.querySelector('.fa-eye-slash.hide.U').classList.remove('hide');
+            document.querySelector('.fa-eye.U').classList.add('hide');
+        });
+        document.querySelector('.fa-eye-slash.I').addEventListener('click', () => {
+            document.getElementById('logInPassword').type = 'text';
+            document.querySelector('.fa-eye.hide.I').classList.remove('hide');
+            document.querySelector('.fa-eye-slash.I').classList.add('hide');
+        });
+        document.querySelector('.fa-eye.I').addEventListener('click', () => {
             document.getElementById('logInPassword').type = 'password';
-            document.querySelector('.fa-eye-slash.hide').classList.remove('hide');
-            document.querySelector('.fa-eye').classList.add('hide');
+            document.querySelector('.fa-eye-slash.hide.I').classList.remove('hide');
+            document.querySelector('.fa-eye.I').classList.add('hide');
+        });
+        document.getElementById('singUpB').addEventListener('click', ()=>{
+            document.getElementById('logInPassword').type = 'password';
+            document.getElementById('signUpPassword').type = 'password';
+            document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
+            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));  
+            document.getElementById('logIn').classList.add('hide');
+            document.getElementById('signUp').classList.remove('hide');
+        });
+        document.getElementById('singInB').addEventListener('click', ()=>{
+            document.getElementById('logInPassword').type = 'password';
+            document.getElementById('signUpPassword').type = 'password';
+            document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
+            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));            
+            document.getElementById('logIn').classList.remove('hide');
+            document.getElementById('signUp').classList.add('hide');
         });
     },
     singIn: function () {
