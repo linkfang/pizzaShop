@@ -61,20 +61,29 @@
                 </div>
             </div>
         </div>
-        <div id="logIn" class="">
-            <div id="overLay">
-            </div>
-            <div id="logInWindow">
-                <p id="logeTitle">Please loge in to see more!</p>
+    </div>
+    <div id="logIn" class="">
+        <div id="overLay">
+        </div>
+        <div id="logInWindow">
+            <p id="logeTitle">Please loge in to see more!</p>
+            <div>
                 <p>E-mail: </p>
-                <input type="text">
+                <input id="logInEmail" type="text">
+                <div class="logInPasswordL">
                 <p>Password</p>
-                <input type="password">
+                <i class="far fa-eye hide"></i>
+                <i class="far fa-eye-slash"></i>
+                </div>
+                <input id="logInPassword" type="password">
+            </div>
+            <div>
                 <button id="logInButton">Log in</button>
+                <p id="singUp">Don't have account? Create one!</p>
             </div>
         </div>
     </div>
-    <div id="staffPage" class=""> 
+    <div id="staffPage" class="hide">
         <nav id="staffNav">
             <div class="navTitle">
                 <p>Link to Pizza</p>
@@ -82,11 +91,10 @@
             <div class="shop">
                 <p class="option highlight"> <img src="img/pizzas.svg" alt="pizzas icon"> Pizzas</p>
                 <p class="option"> <img src="img/ingredients.svg" alt="ingredients icon"> Ingredients</p>
-                <p class="option"> <img src="img/orders.svg" alt="orders icon"> Orders</p>
             </div>
             <div class="people">
-                <p class="option"> <img src="img/passwords.svg" alt="change passwords icon"> Change Password</p>
-                <p class="option"> <img src="img/logout.svg" alt="logout icon"> Log Out</p>
+                <p id="changePass"> <img src="img/passwords.svg" alt="change passwords icon"> Change Password</p>
+                <p id="logout"> <img src="img/logout.svg" alt="logout icon"> Log Out</p>
             </div>
         </nav>
         <div id="staffContent">
@@ -95,31 +103,16 @@
                 <a id="add">+ Add New</a>
             </div>
             <div class="contentList">
+                <div id="listTitle">
+                    <p>Name</p>
+                    <p>Price</p>
+                    <p>Size</p>
+                    <p>Operation</p>
+                </div>
                 <div id="listPage">
-                    <div class="staffLis">
-                        <p>Canadian Pizza</p>
-                        <div class="edit">
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
-                    </div>
-                    <div class="staffLis">
-                        <p>Canadian Pizza</p>
-                        <div class="edit">
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
-                    </div>
-                    <div class="staffLis">
-                        <p>Canadian Pizza</p>
-                        <div class="edit">
-                            <i class="far fa-edit"></i>
-                            <i class="far fa-trash-alt"></i>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="pizzaEdit editForm">
+            <div class="pizzaEdit hide editForm">
                 <div class="pizzaContainer">
                     <div class="pizzaNameCtn">
                         <p class="pizzaName">Name</p>
@@ -202,13 +195,13 @@
                     </div>
 
                     <div class="buttonCtn pizzaBtnCtn">
-                            <button class="cancelPizza cancelBtn">Cancel</button>
-                            <button class="pizzaAdd">Submit</button>
+                        <button class="cancelPizza cancelBtn">Cancel</button>
+                        <button class="pizzaAdd">Submit</button>
                     </div>
                 </div>
             </div>
 
-            <div class="ingredientEdit editForm">
+            <div class="ingredientEdit hide editForm">
                 <div class="ingredientContainer">
                     <div class="ingredientNameCtn">
                         <p class="ingredientName">Name</p>
@@ -326,7 +319,7 @@
                 </div>
             </div>
 
-            <div class="changePasswordPage">
+            <div class="changePasswordPage hide">
                 <div class="changePasswordCtn">
                     <div class="originalPasswordCtn">
                         <p class="originalPassword">Original Password</p>
@@ -334,7 +327,7 @@
                     </div>
 
                     <div class="newPasswordCtn">
-                        <p class="newPassword">New Password</p>
+                        <p class="newPassword">New Passsword</p>
                         <input type="password" required="required">
                     </div>
 
@@ -349,10 +342,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <script src="js/tinyshell-min.js"></script>
-        <script src="js/main.js"></script>
+    </div>
+    <script src="js/tinyshell-min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 

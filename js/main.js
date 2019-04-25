@@ -1,10 +1,9 @@
 let ALPizza = {
     option: null,
     basic: window.location.href,
+    dataURL: 'http://mad9124.rocks',
     init: function () {
         ALPizza.addListteners();
-        document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-        console.log(ALPizza.basic);
     },
     addListteners: function () {
         document.getElementById('logInButton').addEventListener('click', ALPizza.logIn);
@@ -14,6 +13,55 @@ let ALPizza = {
         document.querySelector('.ingredientAdd').addEventListener('click', ALPizza.saveIngredients);
         document.querySelectorAll('.cancelBtn').forEach(item => item.addEventListener('click', ALPizza.back));
         document.getElementById('changePass').addEventListener('click', ALPizza.password);
+        document.getElementById('logInButton').addEventListener('click', ALPizza.singIn);
+        document.getElementById('logout').addEventListener('click', ()=>{
+            document.getElementById('staffPage').classList.add('hide');
+            document.getElementById('logIn').classList.remove('hide');
+        });
+        document.querySelector('.fa-eye-slash').addEventListener('click', () => {
+            console.log('ss');
+            document.getElementById('logInPassword').type = 'text';
+            document.querySelector('.fa-eye.hide').classList.remove('hide');
+            document.querySelector('.fa-eye-slash').classList.add('hide');
+        });
+        document.querySelector('.fa-eye').addEventListener('click', () => {
+            console.log(document.getElementById('logInPassword').type)
+            document.getElementById('logInPassword').type = 'password';
+            document.querySelector('.fa-eye-slash.hide').classList.remove('hide');
+            document.querySelector('.fa-eye').classList.add('hide');
+        });
+    },
+    singIn: function () {
+        let email = document.getElementById('logInEmail').value;
+        let password = document.getElementById('logInPassword').value;
+
+        if (!email) {
+            alert('You have to enter your email!');
+            document.getElementById('logInEmail').focus();
+            return;
+        } else if (!password) {
+            alert('You have to enter your password!');
+            document.getElementById('logInPassword').focus();
+            return;
+        }
+
+        document.getElementById('staffPage').classList.remove('hide');
+        document.getElementById('logIn').classList.add('hide');
+        document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+
+        // let user = {
+        //     email: email,
+        //     password: password
+        // }
+
+        // fetch(`${ALPizza.dataURL}/auth/tokens`)
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (data) {
+
+        //     })
+        //     .catch(err => console.log(err));
     },
     password: function () {
         let showedPage = document.querySelector('.show');
@@ -22,7 +70,7 @@ let ALPizza = {
         document.querySelector('.changePasswordPage').classList.add('show');
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
-        history.pushState(null, null, `${ALPizza.basic}/changepassword`);      
+        history.pushState(null, null, `${ALPizza.basic}/changepassword`);
     },
     back: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
@@ -44,15 +92,13 @@ let ALPizza = {
         ALPizza.option = this.textContent.trim().toLowerCase();
 
         history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}`);
-        let url = `http://mad9124.rocks/api/${ALPizza.option}`;
+        let url = `${ALPizza.dataURL}/api/${ALPizza.option}`;
         console.log(url);
-
         fetch(url)
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data.data);
                 let content = document.querySelector('#listPage');
                 content.innerHTML = '';
 
@@ -109,7 +155,7 @@ let ALPizza = {
     addData: function (item) {
         document.querySelector('.contentList').classList.remove('show');
         document.querySelector('.contentList').classList.add('hide');
-        history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}edit`);    
+        history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}edit`);
 
         console.log(ALPizza.option);
 
@@ -119,7 +165,7 @@ let ALPizza = {
             document.querySelector('.pizzaNameCtn input').value = '';
             document.querySelector('.pizzaPriceCtn input').value = '';
 
-            fetch(`http://mad9124.rocks/api/ingredients`)
+            fetch(`${ALPizza.dataURL}/api/ingredients`)
                 .then(function (response) {
                     return response.json();
                 })
@@ -192,6 +238,7 @@ let ALPizza = {
             document.querySelector('.ingredientQuantityCtn input').value = '';
 
             if (item.name) {
+                document.querySelector('.ingredientAdd').setAttribute('data-id', item._id);
                 document.querySelector('.ingredientNameCtn input').value = item.name;
                 document.querySelector('.ingredientPriceCtn input').value = item.price;
                 document.querySelector('.ingredientQuantityCtn input').value = item.quantity;
@@ -254,13 +301,16 @@ let ALPizza = {
         };
 
         if (document.querySelector('.pizzaAdd').getAttribute('data-id')) {
-            document.querySelector('.pizzaAdd').removeAttribute("style");
-        };
-        ALPizza.postData('POST');
+            let id = document.querySelector('.pizzaAdd').getAttribute('data-id');
+            ALPizza.editData('PUT', id);
+            document.querySelector('.pizzaAdd').removeAttribute("data-id");
+        } else {
+            ALPizza.editData('POST');
+        }
     },
     saveIngredients: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-        
+
         let name = document.querySelector('.ingredientNameCtn input').value;
         let price = document.querySelector('.ingredientPriceCtn input').value;
         let quantity = document.querySelector('.ingredientQuantityCtn input').value;
@@ -286,21 +336,34 @@ let ALPizza = {
             imageUrl: img,
             categories: categorie
         };
-        ALPizza.postData('POST');
+        if (document.querySelector('.ingredientAdd').getAttribute('data-id')) {
+            let id = document.querySelector('.ingredientAdd').getAttribute('data-id');
+            ALPizza.editData('PUT', id);
+            document.querySelector('.ingredientAdd').removeAttribute("data-id");
+        } else {
+            ALPizza.editData('POST');
+        }
     },
     authToken: null,
     newData: null,
-    editData: function (opt) {
-        let url = `http://mad9124.rocks/api/${ALPizza.option}`;
-        const headers = new Headers()
-        headers.append('Content-Type', 'application/json;charset=UTF-8')
+    editData: function (opt, id) {
+        let url = `${ALPizza.dataURL}/api/${ALPizza.option}`;
+
+        if (opt == 'PUT') {
+            url = `${ALPizza.dataURL}/api/${ALPizza.option}:${id}`;
+        }
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json;charset=UTF-8');
+
         if (authToken) {
             headers.append('Authorization', 'Bearer ' + authToken)
         }
         let jsonData = JSON.stringify(ALPizza.newData);
+
         let req = new Request(url, {
             headers: headers,
-            method: 'POST',
+            method: opt,
             mode: 'cors',
             credentials: 'include',
             body: jsonData

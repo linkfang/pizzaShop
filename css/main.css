@@ -51,6 +51,10 @@ header p:nth-child(1){
     display: none !important;
 }
 
+.show{
+    display: inherit !important;
+}
+
 
 /*      loge in      */
 
@@ -61,23 +65,51 @@ header p:nth-child(1){
     width: 20rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: absolute;
+    justify-content: space-around;
+    position: fixed;
     top: calc((100vh - 25rem)/2);
     left: calc((100vw - 20rem)/2);
-
+    padding: 1rem;
 }
 
 #overLay{
-    background-color: rgba(00, 00, 00, 0.5);
-    position: absolute;
+    background-image: url('../img/pizza-big.jpeg');
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
 }
 #logInWindow input, #logInWindow p,#logInButton{
-    margin: 0 1rem;
+    width: 100%;
+}
+
+#logInWindow .logInPasswordL p{
+    width: auto;
+}
+
+.logInPasswordL{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logInPasswordL .far{
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-left: 0.5rem;
+}
+
+.logInPasswordL .far:hover{
+    cursor: pointer;
+}
+
+#logInWindow input{
+    padding: 2px 5px;
 }
 
 #logInButton{
@@ -94,7 +126,6 @@ header p:nth-child(1){
     font-size: 1.5rem;
     text-align: center;
 }
-
 
 #pizzaList{
     display: flex;
@@ -152,6 +183,19 @@ header p:nth-child(1){
     width: 100%;
     height: 75%;
     object-fit: cover;
+}
+
+#singUp{
+    font-size: 0.8rem;
+    color: rgb(241, 134, 34);
+    text-decoration:underline;
+    text-align: right;
+    margin-top: 1rem;
+}
+
+#singUp:hover{
+    cursor: pointer;
+    color: rgb(252, 122, 0);
 }
 
 /************   Staff Pizza   ************/
@@ -252,10 +296,31 @@ header p:nth-child(1){
     cursor: pointer;
 }
 
+#listTitle{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-weight: 700;
+    height: 3.5rem;
+    background-color: hsla(178, 35%, 24%, 1.0);
+    color: white;
+}
+
+#listTitle p{
+    margin: auto;
+}
+
+#listTitle p:nth-child(1){
+    margin-left: 1.75rem;
+}
+
+
+#listTitle p:last-child{
+    margin-right: 1.75rem;
+}
+
 .staffLis{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     height: 3.5rem;
 }
 
@@ -264,18 +329,28 @@ header p:nth-child(1){
 }
 
 .staffLis p{
+    margin: auto;
+}
+
+.staffLis p:nth-child(1){
     margin-left: 1.75rem;
 }
 
 .staffLis div{
     margin-right: 1.75rem;
     opacity: 0.7;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-.staffLis div{
-    width: 4rem;
-    display: flex;
-    justify-content: space-between;
+.staffLis div i:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.staffLis div i:nth-child(1){
+    margin-right: 1.5rem;
 }
 
 
