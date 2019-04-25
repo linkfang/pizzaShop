@@ -62,27 +62,61 @@
             </div>
         </div>
     </div>
+    <div id="signUp" class="hide">
+        <div id="overLay">
+        </div>
+        <div id="signUpWindow">
+            <p id="signUpTitle">Please sign up to see more!</p>
+            <div>
+                <p>First Name </p>
+                <input class="orangeInput" id="signUpFirstName" type="text">
+                <p>Last Name </p>
+                <input class="orangeInput" id="signUpLastName" type="text">
+                <p>E-mail </p>
+                <input class="orangeInput" id="signUpEmail" type="text">
+                <div class="logInPasswordL">
+                    <p>Password</p>
+                    <i class="far fa-eye hide"></i>
+                    <i class="far fa-eye-slash"></i>
+                </div>
+                <input class="orangeInput" id="signUpPassword" type="password">
+                <p>User Type</p>
+                <select class="userTypeSelect orangeInput" name="userType">
+                    <option value="volvo">Customer</option>
+                    <option value="saab">Staff</option>
+                </select>
+            </div>
+            <div>
+                <button id="signUpButton">Sign up</button>
+                <p id="singUp">Already have an account? Log in here!</p>
+            </div>
+        </div>
+    </div>
+
     <div id="logIn" class="">
         <div id="overLay">
         </div>
         <div id="logInWindow">
-            <p id="logeTitle">Please loge in to see more!</p>
+            <p id="logeTitle">Please log in to see more!</p>
             <div>
                 <p>E-mail: </p>
-                <input id="logInEmail" type="text">
+                <input class="orangeInput" id="logInEmail" type="text">
                 <div class="logInPasswordL">
-                <p>Password</p>
-                <i class="far fa-eye hide"></i>
-                <i class="far fa-eye-slash"></i>
+                    <p>Password</p>
+                    <i class="far fa-eye hide"></i>
+                    <i class="far fa-eye-slash"></i>
                 </div>
-                <input id="logInPassword" type="password">
+                <input class="orangeInput" id="logInPassword" type="password">
             </div>
             <div>
                 <button id="logInButton">Log in</button>
-                <p id="singUp">Don't have account? Create one!</p>
+                <p id="singUp">Don't have an account? Create one!</p>
             </div>
         </div>
     </div>
+
+
+
     <div id="staffPage" class="hide">
         <nav id="staffNav">
             <div class="navTitle">
@@ -320,6 +354,16 @@
             </div>
 
             <div class="changePasswordPage hide">
+                    <div class="passwordHeader">
+                            <p class="userName displayText">First Name Last Name</p>
+                            <p class="passwordEmail displayText">someone@email.com</p>
+                            <!-- <p>First Name </p>
+                            <p class="displayText"> User's First Name</p>
+                            <p>Last Name </p>
+                            <p class="displayText"> User's Last Name</p>
+                            <p>E-mail </p>
+                            <p class="displayText"> User's Email</p> -->
+                        </div>
                 <div class="changePasswordCtn">
                     <div class="originalPasswordCtn">
                         <p class="originalPassword">Original Password</p>

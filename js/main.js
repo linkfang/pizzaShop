@@ -70,7 +70,7 @@ let ALPizza = {
         document.querySelector('.changePasswordPage').classList.add('show');
         document.querySelector('.highlight').classList.remove('highlight');
         this.classList.add('highlight');
-        history.pushState(null, null, `${ALPizza.basic}/changepassword`);
+        // history.pushState(null, null, `${ALPizza.basic}/changepassword`);
     },
     back: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
@@ -91,7 +91,7 @@ let ALPizza = {
         document.getElementById('add').textContent = `+ Add New ${this.textContent.substring(0, this.textContent.lastIndexOf('s'))}`;
         ALPizza.option = this.textContent.trim().toLowerCase();
 
-        history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}`);
+        // history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}`);
         let url = `${ALPizza.dataURL}/api/${ALPizza.option}`;
         console.log(url);
         fetch(url)
@@ -155,7 +155,7 @@ let ALPizza = {
     addData: function (item) {
         document.querySelector('.contentList').classList.remove('show');
         document.querySelector('.contentList').classList.add('hide');
-        history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}edit`);
+        // history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}edit`);
 
         console.log(ALPizza.option);
 
