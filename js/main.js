@@ -1,7 +1,7 @@
 let ALPizza = {
     option: null,
     basic: window.location.href,
-    dataURL: 'http://zhou0160.edumedia.ca',
+    dataURL: 'https://zhou0160.edumedia.ca',
     userInfor: {
         firstName: "",
         lastName: "",
