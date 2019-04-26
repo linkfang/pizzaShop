@@ -8,7 +8,7 @@ let ALPizza = {
         email: ""
     },
     init: function () {
-        history.pushState(null, null, `${ALPizza.basic}/index.html`);
+        // history.pushState(null, null, `${ALPizza.basic}/index.html`);
         ALPizza.addListteners();
         if (localStorage.getItem('token')) {
             ALPizza.authToken = localStorage.getItem('token');
@@ -411,7 +411,7 @@ let ALPizza = {
         document.getElementById('add').textContent = `+ Add New ${this.textContent.substring(0, this.textContent.lastIndexOf('s'))}`;
         ALPizza.option = this.textContent.trim().toLowerCase();
 
-        history.pushState(null, null, `${ALPizza.basic}/admin/${ALPizza.option}.html`);
+        // history.pushState(null, null, `${ALPizza.basic}/admin/${ALPizza.option}.html`);
 
         ALPizza.showLoading();
 
@@ -442,6 +442,7 @@ let ALPizza = {
                     let list = document.createElement('div');
                     let name = document.createElement('p');
                     let price = document.createElement('p');
+                    let free = document.createElement('p');
 
                     let editDiv = document.createElement('div');
                     let edit = document.createElement('i');
@@ -449,6 +450,12 @@ let ALPizza = {
 
                     name.textContent = item.name;
                     price.textContent = item.price;
+
+                    if (item.isGlutenFree){
+                        free.textContent = "Yes";
+                    } else {
+                        free.textContent = "No";
+                    }
 
                     list.className = 'staffLis';
                     editDiv.className = 'edit';
@@ -474,6 +481,7 @@ let ALPizza = {
                         list.appendChild(quantity);
                         document.querySelector('#listTitle p:nth-child(3)').textContent = 'Quantity';
                     }
+                    list.appendChild(free);
                     list.appendChild(editDiv);
 
                     documentFragment.appendChild(list);
@@ -838,17 +846,30 @@ let ALPizza = {
         if (width < 550) {
             document.querySelector('#listTitle p:nth-child(3)').classList.add('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.add('hide'));
+            document.querySelector('#listTitle p:nth-child(4)').classList.add('hide');
+            document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.add('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr';
             if (document.querySelector('.staffLis')) {
-                document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr';
+                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr');
             }
 
+        } else if (width < 1100) {
+            document.querySelector('#listTitle p:nth-child(3)').classList.remove('hide');
+            document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.remove('hide'));
+            document.querySelector('#listTitle p:nth-child(4)').classList.add('hide');
+            document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.add('hide'));
+            document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+            if (document.querySelector('.staffLis')) {
+                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr');
+            }
         } else {
             document.querySelector('#listTitle p:nth-child(3)').classList.remove('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.remove('hide'));
-            document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+            document.querySelector('#listTitle p:nth-child(4)').classList.remove('hide');
+            document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.remove('hide'));
+            document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
             if (document.querySelector('.staffLis')) {
-                document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
+                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr');
             }
         }
     },

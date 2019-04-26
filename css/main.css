@@ -428,7 +428,7 @@ body .cancelPassword:hover{
 
 #listTitle {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     font-weight: 700;
     height: 3.5rem;
     background-color: hsla(178, 35%, 30%, 1.0);
@@ -449,7 +449,7 @@ body .cancelPassword:hover{
 
 .staffLis {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     height: 3.5rem;
 }
 
