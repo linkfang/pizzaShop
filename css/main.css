@@ -7,29 +7,30 @@ body {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
+    background-color: rgb(245, 245, 245);
     font-family: Quicksand, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.2rem;
 }
 
-p{
+p {
     margin: 0;
 }
 
-ul.nav{
+ul.nav {
     height: 4rem;
     align-items: center;
     margin-right: 1rem;
 }
 
-li a{
+li a {
     color: rgb(241, 134, 34);
 }
 
-header{
+header {
     background-image: url('../img/pizza-big.jpeg');
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     height: 30rem;
     display: flex;
     flex-direction: column;
@@ -42,30 +43,30 @@ header p {
     color: white;
 }
 
-header p:nth-child(1){
+header p:nth-child(1) {
     font-size: 3rem;
     font-family: Ubuntu;
 }
 
-.hide{
+.hide {
     display: none !important;
 }
 
-.show{
+.show {
     display: inherit !important;
 }
 
 
 /*      loge in      */
 
-.orangeInput:focus{
+.orangeInput:focus {
     outline: none;
     border: 1.5px solid rgb(221, 129, 43);
     transition: all 0.5s ease-out;
 }
 
 #logInWindow,
-#signUpWindow{
+#signUpWindow {
     background-color: white;
     border-radius: 5px;
     height: 25rem;
@@ -79,65 +80,70 @@ header p:nth-child(1){
     padding: 0.75rem 1.75rem 1.75rem 1.75rem;
 }
 
-#signUpWindow{
+#signUpWindow {
     height: 38rem;
     top: calc((100vh - 38rem)/2);
 }
 
-#overLay{
+#overLay {
     background-image: url('../img/pizza-big.jpeg');
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
 }
-#logInWindow input, #logInWindow p,#logInButton,
-#signUpWindow input, #signUpWindow p, #signUpButton{
+
+#logInWindow input,
+#logInWindow p,
+#logInButton,
+#signUpWindow input,
+#signUpWindow p,
+#signUpButton {
     width: 100%;
 }
 
-.userTypeSelect{
+.userTypeSelect {
     width: 100%;
     height: 36px;
 }
 
 #signUpWindow p,
-#logInWindow p{
+#logInWindow p {
     margin-top: 1rem
 }
 
-#logInWindow .logInPasswordL p{
+#logInWindow .logInPasswordL p {
     width: auto;
 }
 
-.logInPasswordL{
+.logInPasswordL {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logInPasswordL .far{
+.logInPasswordL .far {
     margin-top: 1rem;
     font-size: 1rem;
     opacity: 0.7;
     margin-left: 0.5rem;
 }
 
-.logInPasswordL .far:hover{
+.logInPasswordL .far:hover {
     cursor: pointer;
 }
 
 #logInWindow input,
-#signUpWindow input{
+#signUpWindow input {
     padding: 2px 5px;
 }
 
 #logInButton,
-#signUpButton{
+#signUpButton {
     margin-top: 1.75rem;
     background-color: rgb(241, 134, 34);
     outline: none;
@@ -147,20 +153,20 @@ header p:nth-child(1){
 }
 
 #logeTitle,
-#signUpTitle{
+#signUpTitle {
     font-weight: 700;
     font-size: 1.5rem;
     text-align: center;
 }
 
-#pizzaList{
+#pizzaList {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
 }
 
-.fullMenu{
+.fullMenu {
     font-weight: 700;
     text-align: center;
     font-size: 1.5rem;
@@ -168,11 +174,11 @@ header p:nth-child(1){
     border-bottom: solid 3px rgb(241, 134, 34);
 }
 
-#list{
+#list {
     margin: 2rem 0;
 }
 
-.pizza{
+.pizza {
     margin: 2rem;
     width: 50%;
     max-width: 25rem;
@@ -186,17 +192,17 @@ header p:nth-child(1){
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.13);
 }
 
-.pizza div{
+.pizza div {
     display: flex;
     justify-content: space-between;
     margin: 0 1rem;
 }
 
-.pizza div p:nth-child(1){
+.pizza div p:nth-child(1) {
     font-weight: 700;
 }
 
-.pizza button{
+.pizza button {
     align-self: flex-end;
     margin: 0 1rem 1rem;
     background-color: rgb(241, 134, 34);
@@ -205,51 +211,53 @@ header p:nth-child(1){
     border: 0
 }
 
-.pizzaImg{
+.pizzaImg {
     width: 100%;
     height: 75%;
     object-fit: cover;
 }
 
-#singUpB,#singInB{
+#singUpB,
+#singInB {
     font-size: 0.8rem;
     color: rgb(241, 134, 34);
-    text-decoration:underline;
+    text-decoration: underline;
     text-align: right;
     margin-top: 1rem;
 }
 
-#singUpB:hover,#singInB:hover{
+#singUpB:hover,
+#singInB:hover {
     cursor: pointer;
     color: rgb(252, 122, 0);
 }
 
 /************   Staff Pizza   ************/
 
-.logoTitle{
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: hsla(178, 35%, 30%, 1.0);
-color: white;
-font-size: 1.8rem;
-height: 50px;
+.logoTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(178, 35%, 30%, 1.0);
+    color: white;
+    font-size: 1.8rem;
+    height: 50px;
 }
 
-.fa-bars{
+.fa-bars {
     position: absolute;
     left: 2.1rem;
     cursor: pointer;
 }
 
-#staffPage{
+#staffPage {
     display: grid;
     grid-template-columns: 1fr 4fr;
     width: 100vw;
     height: 100vh;
 }
 
-#staffNav{
+#staffNav {
     width: 100%;
     height: 100%;
     /* background-color: darkslategrey; */
@@ -260,26 +268,28 @@ height: 50px;
     z-index: 1000;
 }
 
-#staffNav .shop,#staffNav .people{
+#staffNav .shop,
+#staffNav .people {
     margin: 2rem 0 2rem 0;
 }
 
 
-
-#staffNav .shop p,#staffNav .people p{
+#staffNav .shop p,
+#staffNav .people p {
     padding: 0.65rem 2rem;
     margin: 0.35rem 0;
     border-left: 3px solid hsla(178, 35%, 20%, 0);
     transition: 0.3s all ease-out;
 }
 
-#staffNav .shop p:hover,#staffNav .people p:hover{
+#staffNav .shop p:hover,
+#staffNav .people p:hover {
     background-color: hsla(178, 35%, 20%, 1.0);
     cursor: pointer;
     transition: 0.3s all ease-out;
 }
 
-.navTitle{
+.navTitle {
     font-weight: 700;
     font-size: 1.6rem;
     height: 4rem;
@@ -288,29 +298,25 @@ height: 50px;
     background-color: hsla(178, 35%, 28%, 1.0);
 }
 
-.navTitle p{
+.navTitle p {
     margin-left: 2rem;
     margin-right: 2rem;
 }
 
-#staffNav img{
+#staffNav img {
     width: 1.5rem;
     position: relative;
     bottom: 2px;
     margin-right: 0.25rem;
 }
 
-.highlight{
+.highlight {
     border-left: 3px solid white !important;
     background-color: hsla(178, 35%, 20%, 1.0);
     transition: 0.5s all ease-out !important;
 }
 
-#staffContent{
-    background-color: rgb(245, 245, 245);
-}
-
-.contentTitle{
+.contentTitle {
     font-weight: 700;
     font-size: 1.6rem;
     height: 4rem;
@@ -320,28 +326,28 @@ height: 50px;
     background-color: white;
 }
 
-.contentList{
+.contentList {
     margin: 2rem;
     background-color: white;
 }
 
-.contentTitle p{
+.contentTitle p {
     margin-left: 2rem;
 }
 
-.contentTitle a{
-    color: hsla(178,65%, 40%, 1.0) !important;
+.contentTitle a {
+    color: hsla(178, 65%, 40%, 1.0) !important;
     font-weight: 100;
     font-size: 1rem;
     margin-right: 2rem;
 }
 
-.contentTitle a:hover{
+.contentTitle a:hover {
     color: hsla(178, 35%, 40%, 1.0) !important;
     cursor: pointer;
 }
 
-#listTitle{
+#listTitle {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     font-weight: 700;
@@ -350,38 +356,38 @@ height: 50px;
     color: white;
 }
 
-#listTitle p{
+#listTitle p {
     margin: auto;
 }
 
-#listTitle p:nth-child(1){
+#listTitle p:nth-child(1) {
     margin-left: 1.75rem;
 }
 
 
-#listTitle p:last-child{
+#listTitle p:last-child {
     margin-right: 1.75rem;
 }
 
-.staffLis{
+.staffLis {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     height: 3.5rem;
 }
 
-.staffLis:nth-child(even){
+.staffLis:nth-child(even) {
     background-color: hsla(178, 20%, 95%, 1.0);
 }
 
-.staffLis p{
+.staffLis p {
     margin: auto;
 }
 
-.staffLis p:nth-child(1){
+.staffLis p:nth-child(1) {
     margin-left: 1.75rem;
 }
 
-.staffLis div{
+.staffLis div {
     margin-right: 1.75rem;
     opacity: 0.7;
     display: flex;
@@ -389,12 +395,12 @@ height: 50px;
     align-items: center;
 }
 
-.staffLis div i:hover{
+.staffLis div i:hover {
     opacity: 1;
     cursor: pointer;
 }
 
-.staffLis div i:nth-child(1){
+.staffLis div i:nth-child(1) {
     margin-right: 1.5rem;
 }
 
@@ -403,65 +409,65 @@ height: 50px;
 
 .pizzaEdit,
 .ingredientEdit,
-.changePasswordPage{
+.changePasswordPage {
     margin: 2rem;
     background-color: white;
 }
 
 .pizzaContainer,
 .ingredientContainer,
-.changePasswordCtn{
+.changePasswordCtn {
     margin: 1.75rem;
     display: grid;
     grid-column-gap: 1.75rem;
     grid-template-columns: 1fr 1fr 1fr !important;
     grid-template:
-    "a b c"
-    "d d e"
-    "f f f"
-    "g g g"
-    "h h h"
+        "a b c"
+        "d d e"
+        "f f f"
+        "g g g"
+        "h h h"
 }
 
-.pizzaNameCtn{
+.pizzaNameCtn {
     grid-area: a;
 }
 
-.pizzaPriceCtn{
+.pizzaPriceCtn {
     grid-area: b;
 }
 
-.pizzaImageCtn{
+.pizzaImageCtn {
     grid-area: c;
 }
 
-.pizzaSizeCtn{
+.pizzaSizeCtn {
     grid-area: d;
 }
 
-.pizzaGlutenCtn{
+.pizzaGlutenCtn {
     grid-area: e;
 }
 
-.pizzaIngredientsCtn{
+.pizzaIngredientsCtn {
     grid-area: g;
 }
 
-.pizzaExtraCtn{
+.pizzaExtraCtn {
     grid-area: f;
 }
 
-.pizzaBtnCtn{
+.pizzaBtnCtn {
     grid-area: h;
 }
 
-.buttonCtn{
+.buttonCtn {
     margin: 2rem 0;
     display: flex;
     justify-content: space-between;
 }
 
-.cancelBtn{
+.cancelBtn {
     padding: 0.25rem 0.75rem;
     background-color: hsla(178, 0%, 96%, 1.0);
     border: none;
@@ -470,15 +476,16 @@ height: 50px;
     height: auto;
 }
 
-.cancelBtn:hover{
+.cancelBtn:hover {
     background-color: hsla(178, 0%, 90%, 1.0);
 }
 
-.cancelBtn:active{
+.cancelBtn:active {
     background-color: hsla(178, 0%, 84%, 1.0);
     transition: all 0.1s linear;
 }
-.saveBtn{
+
+.saveBtn {
     padding: 0.25rem 0.75rem;
     background-color: hsla(178, 35%, 30%, 1.0);
     border: none;
@@ -487,24 +494,24 @@ height: 50px;
     height: auto;
 }
 
-.saveBtn:hover{
+.saveBtn:hover {
     background-color: hsla(178, 55%, 22%, 1.0);
 }
 
-.saveBtn:active{
+.saveBtn:active {
     background-color: hsla(178, 60%, 18%, 1.0);
     transition: all 0.1s linear;
 }
 
 .pizzaEdit p,
 .ingredientEdit p,
-.changePasswordCtn p{
+.changePasswordCtn p {
     margin: 0.3rem 0;
     padding-top: 1rem;
     font-weight: 700;
 }
 
-.pizzaEdit p:last-child{
+.pizzaEdit p:last-child {
     padding-bottom: 1.5rem;
 }
 
@@ -514,8 +521,7 @@ height: 50px;
 .ingredientNameCtn input,
 .ingredientPriceCtn input,
 .ingredientImageCtn input,
-.ingredientQuantityCtn input
-{
+.ingredientQuantityCtn input {
     width: 100%;
 }
 
@@ -527,61 +533,61 @@ height: 50px;
 
 
 /************ Ingredient Edit Page ************/
-.ingredientContainer{
+.ingredientContainer {
     grid-template:
-    "a b c"
-    "d e f"
-    "g g g"
+        "a b c"
+        "d e f"
+        "g g g"
 }
 
-.ingredientBtnCtn{
+.ingredientBtnCtn {
     grid-area: g;
 }
 
-.form-check input{
+.form-check input {
     height: 1.3rem;
 }
 
 
 /************ Change Password Page ************/
 
-.flexCtn{
+.flexCtn {
     /* width: 100%; */
     background-color: rgb(245, 245, 245);
     display: flex;
     justify-content: center;
 }
 
-.passwordCardCtn{
+.passwordCardCtn {
     width: 100%;
     max-width: 420px;
     background-color: white;
 
 }
 
-.changePasswordCtn{
+.changePasswordCtn {
     /* margin: 1.75rem; */
     margin-top: 1rem !important;
     display: grid;
     grid-template-columns: 1fr !important;
     grid-template:
-    "a"
+        "a"
 }
 
-.newPassword{
+.newPassword {
     margin: 0 !important;
 }
 
-.confirmPassword{
+.confirmPassword {
     margin-bottom: 0 !important;
 }
 
-.changePasswordCtn input{
+.changePasswordCtn input {
     width: 100%;
     max-width: 360px;
 }
 
-.changePasswordCheckBox{
+.changePasswordCheckBox {
     width: 100%;
     max-width: 360px;
     margin: 0;
@@ -590,24 +596,24 @@ height: 50px;
     padding-bottom: 0.25rem;
 }
 
-.changePasswordCheckBox input{
+.changePasswordCheckBox input {
     /* margin: 0 !important; */
     /* padding: 0 !important; */
     width: 184px;
     height: 13px;
 }
 
-.changePasswordCheckBox label{
+.changePasswordCheckBox label {
     font-size: 0.9rem;
 }
 
-.buttonCtnPassword{
+.buttonCtnPassword {
     margin-top: 3rem;
     display: flex;
     justify-content: flex-start;
 }
 
-.submitPassword{
+.submitPassword {
     border-radius: 3px;
     border: 0px;
     width: 120px;
@@ -615,7 +621,7 @@ height: 50px;
     color: white;
 }
 
-.submitPassword:active{
+.submitPassword:active {
     background-color: hsla(178, 35%, 20%, 1.0);
 }
 
@@ -628,26 +634,26 @@ height: 50px;
     font-weight: 100 !important;
 } */
 
-.passwordHeader{
+.passwordHeader {
     background-color: hsla(178, 35%, 30%, 1.0);
     padding: 1rem 0;
 }
 
-.displayText{
+.displayText {
     color: white;
-    margin: 0 0 0 1.75rem!important;
+    margin: 0 0 0 1.75rem !important;
     padding: 0.1rem !important;
     font-weight: 700 !important;
 }
 
-.originalPassword{
+.originalPassword {
     margin-top: 0 !important;
     padding-top: 0 !important;
     font-weight: 700;
 }
 
 input,
-.orangeInput{
+.orangeInput {
     height: 36px;
     padding-left: 0.5rem !important;
     padding-right: 0.5rem !important;
@@ -656,74 +662,81 @@ input,
     transition: all 0.5s ease-out;
 }
 
-input:focus{
+input:focus {
     outline: none;
     border: 1.5px solid hsla(178, 35%, 30%, 1.0);
     transition: all 0.5s ease-out;
 }
 
-button{
+button {
     height: 36px;
     border-radius: 3px;
     transition: all 0.5s ease-out;
 }
 
-button:focus{
+button:focus {
     outline: none;
 }
 
-.orangeBtn:hover{
-    background-color:rgb(219, 106, 0) !important;
+.orangeBtn:hover {
+    background-color: rgb(219, 106, 0) !important;
     transition: all 0.5s ease-out;
 }
 
-.form-radio-input{
+.form-radio-input {
     height: auto;
 }
 
-.notification{
+.notification {
     position: fixed;
-    top:8.2vh;
+    top: 12vh;
     width: 20rem;
     left: calc((100vw - 20rem)/2);
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     font-size: 1.3rem;
     padding: 0.55rem 2rem;
     background-color: rgb(207, 112, 24);
-    border-radius: 50px;
+    border-radius: 6px;
     box-shadow: 1px 1px 20px hsla(178, 0%, 0%, 0.3);
     z-index: 100;
     color: white;
     transition: all 0.35s ease-out;
 }
 
-/* 
-document.querySelector(".logoTitle").addEventListener("click", ()=>{
-    document.querySelector(".notification").classList.remove("notificationHide");
-});
-document.querySelector(".closeBtn").addEventListener("click", ()=>{
-    document.querySelector(".notification").classList.add("notificationHide");
-}); 
-*/
+.notification p {
+    text-align: center;
+}
 
-.notificationHide{
-    /* top:-8vh; */
-    transform: scale(0.001);
-    opacity: 0;
+.notification p:nth-child(1) {
+    font-weight: 700;
+    margin-top: 0.25rem;
+}
+
+.notification p:nth-child(2) {
+    font-size: 1rem;
+    margin: 0.5rem 0
+}
+
+.notificationHide {
+    top: -20vh;
+    transform: scale(0.7);
+    opacity: 0.6;
     transition: all 0.35s ease-in;
 }
 
-.closeBtn{
+.closeBtn {
     position: absolute;
     top: 0.3rem;
-    right: 0.6rem;
+    right: 0.5rem;
     font-size: 0.8rem;
     padding: 0.25rem 0.39rem;
     transition: all 0.25s ease-out;
 }
 
-.closeBtn:hover{
+.closeBtn:hover {
     transform: rotate(180deg);
     background-color: white;
     color: rgb(207, 112, 24);
@@ -731,7 +744,7 @@ document.querySelector(".closeBtn").addEventListener("click", ()=>{
     transition: all 0.25s ease-out;
 }
 
-.loadingOverlay{
+.loadingOverlay {
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -740,13 +753,13 @@ document.querySelector(".closeBtn").addEventListener("click", ()=>{
     transition: all 0.1s ease-out;
 }
 
-.loadingOverlayHide{
+.loadingOverlayHide {
     opacity: 0;
     transition: all 0.1s ease-out;
     z-index: -100;
 }
 
-.loadingAnimation{
+.loadingAnimation {
     position: fixed;
     left: calc((100vw - 4rem)/2);
     top: calc((100vw - 0.5rem)/2);
@@ -757,28 +770,28 @@ document.querySelector(".closeBtn").addEventListener("click", ()=>{
     animation: loadingAnimationShow 4s ease-in-out infinite;
 }
 
-@keyframes loadingAnimationShow{
-    0%{
+@keyframes loadingAnimationShow {
+    0% {
         background-color: hsla(178, 65%, 40%, 1.0);
     }
 
-    25%{
+    25% {
         transform: rotate(270deg);
         background-color: hsla(30, 65%, 45%, 1.0);
     }
 
-    
-    50%{
+
+    50% {
         transform: rotate(540deg);
         background-color: hsla(178, 65%, 40%, 1.0);
     }
 
-    75%{
+    75% {
         transform: rotate(810deg);
         background-color: hsla(30, 65%, 45%, 1.0);
     }
 
-    90%{
+    90% {
         transform: rotate(0deg);
         background-color: hsla(178, 65%, 40%, 1.0);
         /* padding: 2rem; */
@@ -790,57 +803,59 @@ document.querySelector(".closeBtn").addEventListener("click", ()=>{
 
 @media (max-width: 1280px) {
 
-    #staffPage{
+    #staffPage {
         grid-template-columns: 1.8fr 4fr;
     }
 
-    #staffNav{
-        width: calc(1.8/5.8 * 100vw) ;
+    #staffNav {
+        width: calc(1.8/5.8 * 100vw);
     }
 }
 
 @media (max-width: 890px) {
-    #empty{
+    #empty {
         display: none;
     }
 
-    .navTitle{
+    .navTitle {
         display: none;
     }
 
-    #staffNav{
+    #staffNav {
         transform: translateX(-100%);
         transition: all 0.5s ease-out;
         min-width: 17rem;
     }
 
-    #staffPage{
+    #staffPage {
         grid-template-columns: 1fr;
+        height: calc(100% - 50px);
     }
 
-    .logoTitle{
+    .logoTitle {
         display: flex !important;
     }
 }
 
 @media (max-width: 660px) {
-    .contentList{
+    .contentList {
         margin: 2rem 0 0 0;
         background-color: white;
     }
 
-    .editForm{
+    .editForm {
         margin: 2rem 0 0 0;
     }
 
-    .changePasswordPage{
+    .changePasswordPage {
         margin: 2rem 0 0 0;
     }
+
     .pizzaContainer,
-    .ingredientContainer{
-    margin: 1.75rem;
-    display: flex;
-    flex-direction: column;
+    .ingredientContainer {
+        margin: 1.75rem;
+        display: flex;
+        flex-direction: column;
     }
 
 

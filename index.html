@@ -68,9 +68,9 @@
     </div>
 
     <div class="notification notificationHide">
+        <p>This is title!</p>
         <p>This is the notification!</p>
         <i class="fas fa-times closeBtn"></i>
-        <!-- <span class="closeBtn">X</span> -->
     </div>
 
     <div id="signUp" class="hide">
@@ -384,7 +384,7 @@
                                     <label class="form-check-label" for="showNewPassword">
                                         Show Password
                                     </label>
-                                    <input class="form-check-input" name="showPassword" type="checkbox" value="showNew"
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType('new')" name="showPassword" type="checkbox" value="showNew"
                                         id="showNewPassword">
                                 </div>
                                 <input type="password" required="required">
@@ -396,8 +396,7 @@
                                     <label class="form-check-label" for="showNewPassword">
                                         Show Password
                                     </label>
-                                    <input class="form-check-input" name="showPassword" type="checkbox" value="showNew"
-                                        id="showNewPassword">
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType()" name="showPassword" type="checkbox" value="showNew">
                                 </div>
                                 <input type="password" required="required">
                             </div>

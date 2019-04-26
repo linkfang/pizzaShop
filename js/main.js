@@ -2,10 +2,22 @@ let ALPizza = {
     option: null,
     basic: window.location.href,
     dataURL: 'http://zhou0160.edumedia.ca',
+    userInfor: {
+        firstName: "",
+        lastName: "",
+        email: ""
+    },
     init: function () {
         ALPizza.addListteners();
+        if (localStorage.getItem('token')) {
+            ALPizza.authToken = localStorage.getItem('token');
+            ALPizza.getUser();
+        }
     },
     addListteners: function () {
+        document.querySelector('.closeBtn').addEventListener('click',()=>{
+            document.querySelector(".notification").classList.add("notificationHide");
+        });
         window.onresize = function () {
             ALPizza.changeWidth();
         };
@@ -26,6 +38,8 @@ let ALPizza = {
             document.getElementById('humburger').classList.add('hide');
             document.getElementById('logIn').classList.remove('hide');
             document.getElementById('logInPassword').value = '';
+            ALPizza.authToken = null;
+            localStorage.removeItem('token');
         });
         document.querySelector('.fa-eye-slash.U').addEventListener('click', () => {
             document.getElementById('signUpPassword').type = 'text';
@@ -69,15 +83,57 @@ let ALPizza = {
             document.getElementById('signUp').classList.add('hide');
         });
         document.getElementById('signUpButton').addEventListener('click', ALPizza.singUp);
-        document.getElementById('staffContent').addEventListener('click', ()=>{
-            if(ALPizza.hum){
-              ALPizza.hideHum()
+        document.getElementById('staffContent').addEventListener('click', () => {
+            if (ALPizza.hum) {
+                ALPizza.hideHum()
             }
         });
     },
+    getUser: function () {
+        ALPizza.showLoading();
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json;charset=UTF-8');
+
+        if (ALPizza.authToken) {
+            headers.append('Authorization', 'Bearer ' + ALPizza.authToken)
+        }
+
+        let url = `${ALPizza.dataURL}/auth/users/me`;
+
+        let req = new Request(url, {
+            headers: headers,
+            method: 'GET',
+            mode: 'cors'
+        });
+
+        fetch(req)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+
+                ALPizza.hideLoading();
+
+                ALPizza.userInfor.firstName = data.data.firstName;
+                ALPizza.userInfor.lastName = data.data.lastName;
+                ALPizza.userInfor.email = data.data.email;
+
+                if (data.data.isStaff) {
+                    document.getElementById('staffPage').classList.remove('hide');
+                    document.getElementById('logIn').classList.add('hide');
+                    document.getElementById('humburger').classList.remove('hide');
+                    document.querySelector('.shop p:nth-child(1)').dispatchEvent(new MouseEvent('click'));
+                } else {
+                    document.getElementById('userList').classList.remove('hide');
+                    document.getElementById('logIn').classList.add('hide');
+                }
+            })
+            .catch(err => console.log(err));
+    },
     hum: null,
     showHum: function () {
-        if(ALPizza.hum){
+        if (ALPizza.hum) {
             ALPizza.hideHum();
             return;
         }
@@ -85,7 +141,7 @@ let ALPizza = {
         ALPizza.hum = true;
     },
     hideHum: function () {
-        document.getElementById('staffNav').style.transform = 'translateX(-100%)';
+        document.getElementById('staffNav').removeAttribute('style');
         ALPizza.hum = false;
     },
     changePass: function () {
@@ -122,10 +178,14 @@ let ALPizza = {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data)
-                if (data) {
-                    let not = `Added succesfully!`;
+                if (data.data) {
+                    let not ={
+                        title: 'Succeed',
+                        detail:`Password has been changed.`
+                    } ;
                     ALPizza.not(not);
+                } else if (data.errors){
+                    ALPizza.not(data.errors[0]);
                 }
             })
             .catch(err => {
@@ -157,6 +217,8 @@ let ALPizza = {
             isStaff: userType
         }
 
+        ALPizza.showLoading();
+
         const headers = new Headers();
         headers.append('Content-Type', 'application/json;charset=UTF-8');
 
@@ -172,19 +234,23 @@ let ALPizza = {
             body: jsonData
         });
 
-        console.log(req);
-
         fetch(req)
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
                 console.log(data);
-                if (data.errors) {
-                    alert(data.errors[0].title + " Please try again!");
-                    return;
+                ALPizza.hideLoading();
+                if (data.data) {
+                    let not ={
+                        title: 'Succeed',
+                        detail:`New account has been created, you can sign in now.`
+                    } ;
+                    ALPizza.not(not);
+                    document.querySelector('#singInB').dispatchEvent(new MouseEvent('click'));
+                } else if (data.errors){
+                    ALPizza.not(data.errors[0]);
                 }
-                document.querySelector('#singInB').dispatchEvent(new MouseEvent('click'));
             })
             .catch(err => console.log(err));
 
@@ -202,6 +268,8 @@ let ALPizza = {
             document.getElementById('logInPassword').focus();
             return;
         }
+
+        ALPizza.showLoading();
 
         let user = {
             email: email,
@@ -228,23 +296,39 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
+                ALPizza.hideLoading();
                 if (data.errors) {
                     alert(data.errors[0].title + " Please try again!");
                     return;
                 }
                 ALPizza.authToken = data.data.token;
-                document.getElementById('staffPage').classList.remove('hide');
-                document.getElementById('logIn').classList.add('hide');
-                document.getElementById('humburger').classList.remove('hide');
-                document.querySelector('.shop p:nth-child(1)').dispatchEvent(new MouseEvent('click'));
+                localStorage.setItem('token', ALPizza.authToken);
+                ALPizza.getUser();
             })
             .catch(err => console.log(err));
-
+    },
+    userPage: function () {
+        fetch(`${ALPizza.dataURL}/api/pizzas`)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+            })
+            .catch(err => console.log(err));
     },
     password: function () {
         if (ALPizza.hum) {
             ALPizza.hideHum();
         }
+        document.querySelector('.newPasswordCtn>input').value = '';
+        document.querySelector('.confirmPasswordCtn>input').value = '';
+        document.querySelector('.confirmPasswordCtn>input').type = 'password';
+        document.querySelector('.newPasswordCtn>input').type = 'password';
+
+        document.querySelector('.userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
+        document.querySelector('.passwordEmail').textContent = ALPizza.userInfor.email;
+
         let showedPage = document.querySelector('.show');
         showedPage.classList.add('hide');
         showedPage.classList.remove('show');
@@ -275,6 +359,9 @@ let ALPizza = {
         ALPizza.option = this.textContent.trim().toLowerCase();
 
         // history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}`);
+
+        ALPizza.showLoading();
+
         let url = `${ALPizza.dataURL}/api/${ALPizza.option}`;
 
         const headers = new Headers();
@@ -292,6 +379,7 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
+                 ALPizza.hideLoading();                
                 let content = document.querySelector('#listPage');
                 content.innerHTML = '';
 
@@ -345,6 +433,8 @@ let ALPizza = {
     deleteData: function (id) {
         console.log(id);
 
+        ALPizza.showLoading();
+
         const headers = new Headers();
         headers.append('Content-Type', 'application/json;charset=UTF-8');
 
@@ -352,7 +442,7 @@ let ALPizza = {
             headers.append('Authorization', 'Bearer ' + ALPizza.authToken)
         }
 
-        let url = `${ALPizza.dataURL}/api/${ALPizza.option}:${id}`;
+        let url = `${ALPizza.dataURL}/api/${ALPizza.option}/${id}`;
 
         let req = new Request(url, {
             headers: headers,
@@ -366,6 +456,19 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
+                ALPizza.hideLoading();
+
+                if (data.data) {
+                    let not ={
+                        title: 'Succeed',
+                        detail:`${data.data.name} has been deleted!`
+                    } ;
+                    ALPizza.not(not);
+                    document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+                } else if (data.errors){
+                    ALPizza.not(data.errors[0]);
+                }
+
             })
             .catch(err => console.log(err));
     },
@@ -381,6 +484,14 @@ let ALPizza = {
 
             document.querySelector('.pizzaNameCtn input').value = '';
             document.querySelector('.pizzaPriceCtn input').value = '';
+
+            document.getElementById('smallPi').checked = true;
+
+            document.getElementsByName('size').forEach(pizza => {
+                if (pizza.value == item.size) {
+                    pizza.checked = "checked";
+                }
+            });
 
             fetch(`${ALPizza.dataURL}/api/ingredients`)
                 .then(function (response) {
@@ -412,8 +523,9 @@ let ALPizza = {
                     })
 
                     content.appendChild(documentFragment);
+
                     document.querySelector('.pizzaExtraCtn .form-row').innerHTML = content.innerHTML;
-                    document.querySelector('.pizzaExtraCtn input').setAttribute('name', 'ExIngredient');
+                    document.querySelectorAll('.pizzaExtraCtn input').forEach(item => item.name = 'ExIngredient');
 
                     if (item.name) {
                         document.querySelector('.pizzaAdd').setAttribute('data-id', item._id);
@@ -424,23 +536,30 @@ let ALPizza = {
                                 pizza.checked = "checked";
                             }
                         });
+
+                        let g;
+                        if (item.isGlutenFree) {
+                            g = "true";
+                        } else {
+                            g = "false";
+                        }
+
                         document.getElementsByName('Gluten').forEach(gluten => {
-                            let g = item.isGlutenFree ? "true" : "false";
                             if (gluten.value == g) {
-                                gluten.checked = "checked";
+                                gluten.checked = true;
                             }
                         });
                         item.ingredients.forEach(ingredient => {
                             document.getElementsByName('Ingredient').forEach(ing => {
-                                if (ing.value == ingredient.name) {
-                                    ing.checked = "checked";
+                                if (ing.value == ingredient._id) {
+                                    ing.checked = true;
                                 }
                             });
                         });
-                        item.extraToppings.forEach(ingredient => {
+                        item.extraToppings.forEach(ex => {
                             document.getElementsByName('ExIngredient').forEach(ing => {
-                                if (ing.value == ingredient.name) {
-                                    ing.checked = "checked";
+                                if (ing.value == ex._id) {
+                                    ing.checked = true;
                                 }
                             });
                         });
@@ -453,6 +572,11 @@ let ALPizza = {
             document.querySelector('.ingredientNameCtn input').value = "";
             document.querySelector('.ingredientPriceCtn input').value = "";
             document.querySelector('.ingredientQuantityCtn input').value = '';
+            document.getElementsByName('categories').forEach(cat => {
+                cat.checked = false;
+            });
+
+            document.getElementById('noIn').checked = true;
 
             if (item.name) {
                 document.querySelector('.ingredientAdd').setAttribute('data-id', item._id);
@@ -462,13 +586,13 @@ let ALPizza = {
                 document.getElementsByName('GlutenIn').forEach(gluten => {
                     let g = item.isGlutenFree ? "true" : "false";
                     if (gluten.value == g) {
-                        gluten.checked = "checked";
+                        gluten.checked = true;
                     }
                 });
                 item.categories.forEach(categorie => {
                     document.getElementsByName('categories').forEach(cat => {
                         if (cat.value == categorie) {
-                            cat.checked = "checked";
+                            cat.checked = true;
                         }
                     });
                 });
@@ -490,7 +614,11 @@ let ALPizza = {
         let glutenFree;
         document.getElementsByName('Gluten').forEach(item => {
             if (item.checked) {
-                glutenFree = item.value;
+                if (item.value == "ture") {
+                    glutenFree = 'true';
+                } else {
+                    glutenFree = 'false';
+                }
             }
         });
 
@@ -553,8 +681,6 @@ let ALPizza = {
             categories: categorie
         };
 
-        console.log(ALPizza.newData)
-
         if (document.querySelector('.ingredientAdd').getAttribute('data-id')) {
             let id = document.querySelector('.ingredientAdd').getAttribute('data-id');
             ALPizza.editData('PUT', id);
@@ -572,6 +698,7 @@ let ALPizza = {
             url = `${ALPizza.dataURL}/api/${ALPizza.option}/${id}`;
         }
 
+        ALPizza.showLoading();
         const headers = new Headers();
         headers.append('Content-Type', 'application/json;charset=UTF-8');
 
@@ -579,6 +706,8 @@ let ALPizza = {
             headers.append('Authorization', 'Bearer ' + ALPizza.authToken)
         }
         let jsonData = JSON.stringify(ALPizza.newData);
+
+        console.log(jsonData);
 
         let req = new Request(url, {
             headers: headers,
@@ -592,12 +721,23 @@ let ALPizza = {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data)
+                console.log(data);
+                ALPizza.hideLoading();
                 document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+               
+                if (data.data) {
+                    let not ={
+                        title: 'Succeed',
+                        detail:`${data.data.name} has been added.`
+                    } ;
 
-                if (data) {
-                    let not = `Added succesfully!`;
+                    if(opt == 'PUT'){
+                        not.detail = `${data.data.name} has been modified.`
+                    }
+
                     ALPizza.not(not);
+                } else if (data.errors){
+                    ALPizza.not(data.errors[0]);
                 }
             })
             .catch(err => {
@@ -605,7 +745,13 @@ let ALPizza = {
             })
     },
     not: function (not) {
-        alert(not);
+        document.querySelector('.notification p:nth-child(1)').textContent = not.title;
+        document.querySelector('.notification p:nth-child(2)').textContent = not.detail;
+        
+        document.querySelector(".notification").classList.remove("notificationHide");
+        setTimeout(() => {
+            document.querySelector(".notification").classList.add("notificationHide");
+        }, 5000);
     },
     changeWidth: function () {
         let width = window.innerWidth;
@@ -614,18 +760,39 @@ let ALPizza = {
             document.querySelector('#listTitle p:nth-child(3)').classList.add('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.add('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr';
-            if(document.querySelector('.staffLis')){
-            document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr';
-        }
+            if (document.querySelector('.staffLis')) {
+                document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr';
+            }
 
         } else {
             document.querySelector('#listTitle p:nth-child(3)').classList.remove('hide');
             document.querySelectorAll('.staffLis p:nth-child(3)').forEach(item => item.classList.remove('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
-            if(document.querySelector('.staffLis')){
+            if (document.querySelector('.staffLis')) {
                 document.querySelector('.staffLis').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
             }
         }
+    },
+    taggleInputType: function (ops) {
+        if (ops == "new") {
+            if (document.querySelector('.newPasswordCtn>input').type == 'text') {
+                document.querySelector('.newPasswordCtn>input').type = 'password';
+            } else {
+                document.querySelector('.newPasswordCtn>input').type = 'text';
+            }
+        } else {
+            if (document.querySelector('.confirmPasswordCtn>input').type == 'text') {
+                document.querySelector('.confirmPasswordCtn>input').type = 'password';
+            } else {
+                document.querySelector('.confirmPasswordCtn>input').type = 'text';
+            }
+        }
+    },
+    showLoading: function(){
+        document.querySelector('.loadingOverlay').classList.remove('loadingOverlayHide');
+    },
+    hideLoading: function(){
+        document.querySelector('.loadingOverlay').classList.add('loadingOverlayHide');
     }
 }
 
