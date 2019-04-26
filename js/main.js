@@ -352,6 +352,8 @@ let ALPizza = {
         if (ALPizza.hum) {
             ALPizza.hideHum();
         }
+        document.querySelector('.contentTitle p').textContent = this.textContent;
+
         document.querySelector('.changePasswordPage .newPasswordCtn>input').value = '';
         document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value = '';
         document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type = 'password';

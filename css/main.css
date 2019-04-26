@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
+/*
+
+Graphic Sources
+
+Menu Icons(img/ingredients.svg, logout.svg, pizzas.svg, passwords.svg): Copied from Office PowerPoint
+Other Icons: Fontawesome
+Log In Page Background Image(img/pizza-big.jpeg): https://unsplash.com/photos/eAut6QVVzWQ
+Customer Page Background Image(img/1.jpeg) https://unsplash.com/photos/MQUqbmszGGM
+
+*/
+
+
 body {
     margin: 0;
     padding: 0;
