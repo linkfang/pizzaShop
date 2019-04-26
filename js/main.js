@@ -18,16 +18,11 @@ let ALPizza = {
         ALPizza.changeWidth();
     },
     checkBasicURL: function(){
-
         let url = ALPizza.basic.split('');
-        console.log(url);
         if (url[url.length - 1] == '/'){
             url.pop();
         }
         ALPizza.basic  = url.join('');
-
-        console.log(ALPizza.basic)
-
     },
     addListteners: function () {
         document.getElementById('userChange').addEventListener('click', () => {
