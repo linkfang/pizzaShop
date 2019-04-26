@@ -17,22 +17,59 @@
     <div id="userList" class="hide">
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Pizza</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Ingredients</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="#">Change Password</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Log Out</a>
             </li>
         </ul>
         <header>
-            <div>
-                <p>Link to Pizza</p>
-                <p>Everyday is a Pizzaday!</p>
-            </div>
         </header>
-        <div id="pizzaList">
+        <div class="welcomeText">
+                <p>Welcome to Link to Pizza</p>
+                <p>Everyday is a Pizzaday!</p>
+        </div>
+
+                <div class="changePasswordUser">
+                    <div class="passwordCardCtn">
+                        <div class="passwordHeaderUser">
+                            <p class="userName displayText">First Name Last Name</p>
+                            <p class="passwordEmail displayText">someone@email.com</p>
+                        </div>
+                        <div class="changePasswordCtn">
+                            <div class="newPasswordCtn">
+                                <p class="newPassword">New Passsword</p>
+                                <div class="form-check changePasswordCheckBox">
+                                    <label class="form-check-label" for="showNewPassword">
+                                        Show Password
+                                    </label>
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType('new')"
+                                        name="showPassword" type="checkbox" value="showNew" id="showNewPassword">
+                                </div>
+                                <input type="password" required="required">
+                            </div>
+
+                            <div class="confirmPasswordCtn">
+                                <p class="confirmPassword">Confirm New Password</p>
+                                <div class="form-check changePasswordCheckBox">
+                                    <label class="form-check-label" for="showNewPassword">
+                                        Show Password
+                                    </label>
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType()"
+                                        name="showPassword" type="checkbox" value="showNew">
+                                </div>
+                                <input type="password" required="required">
+                            </div>
+
+                            <div class="buttonCtn buttonCtnPassword">
+                                <button class="orangeBtn submitPassword">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        <!-- <div id="pizzaList">
             <p class="fullMenu">Full Menu</p>
             <div id="list" class="row justify-content-center">
                 <div class="pizza" class="col-sm-12 col-md-6">
@@ -60,7 +97,7 @@
                     <button>ADD</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="loadingOverlay loadingOverlayHide">
@@ -384,8 +421,8 @@
                                     <label class="form-check-label" for="showNewPassword">
                                         Show Password
                                     </label>
-                                    <input class="form-check-input" onclick="ALPizza.taggleInputType('new')" name="showPassword" type="checkbox" value="showNew"
-                                        id="showNewPassword">
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType('new')"
+                                        name="showPassword" type="checkbox" value="showNew" id="showNewPassword">
                                 </div>
                                 <input type="password" required="required">
                             </div>
@@ -396,7 +433,8 @@
                                     <label class="form-check-label" for="showNewPassword">
                                         Show Password
                                     </label>
-                                    <input class="form-check-input" onclick="ALPizza.taggleInputType()" name="showPassword" type="checkbox" value="showNew">
+                                    <input class="form-check-input" onclick="ALPizza.taggleInputType()"
+                                        name="showPassword" type="checkbox" value="showNew">
                                 </div>
                                 <input type="password" required="required">
                             </div>

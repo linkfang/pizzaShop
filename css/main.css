@@ -22,30 +22,76 @@ ul.nav {
     margin-right: 1rem;
 }
 
-li a {
+.nav-link {
+    padding: 0.1rem;
+    margin: 0 0.75rem;
     color: rgb(241, 134, 34);
+    border-bottom: 2px solid rgba(241, 134, 34, 0);
+    transition: all 0.25s ease-in;
+}
+
+.nav-link:hover {
+    color: rgb(206, 108, 17);
+    border-bottom: 2px solid rgba(241, 134, 34, 1);
+    transition: all 0.25s ease-out;
+
 }
 
 header {
-    background-image: url('../img/pizza-big.jpeg');
+    background-image: url('../img/1.jpg');
+    filter: brightness(70%);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 30rem;
+    height: calc(100vh - 4rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-header p {
+.welcomeText {
+    position: fixed;
+    z-index: 100;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    bottom: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.welcomeText p {
     text-align: center;
     color: white;
 }
 
-header p:nth-child(1) {
+.welcomeText p:nth-child(1) {
     font-size: 3rem;
     font-family: Ubuntu;
+}
+
+.changePasswordUser{
+    position: fixed;
+    z-index: 300;
+    top: 4rem;
+    bottom: 8rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.passwordHeaderUser{
+    background-color: rgb(241, 134, 34);
+    padding: 1rem 0;
+}
+
+.orangeBtn{
+    background-color: rgb(241, 134, 34) !important;
 }
 
 .hide {
@@ -75,18 +121,18 @@ header p:nth-child(1) {
     flex-direction: column;
     justify-content: space-around;
     position: fixed;
-    top: calc((100vh - 25rem)/2);
+    top: calc((100vh - 32rem)/2);
     left: calc((100vw - 24rem)/2);
     padding: 0.75rem 1.75rem 1.75rem 1.75rem;
 }
 
 #signUpWindow {
     height: 38rem;
-    top: calc((100vh - 38rem)/2);
+    top: calc((100vh - 43rem)/2);
 }
 
 #overLay {
-    background-image: url('../img/pizza-big.jpeg');
+    background-image: url('../img/9.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
