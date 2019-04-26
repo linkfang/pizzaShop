@@ -121,7 +121,8 @@ body .cancelPassword:hover{
 }
 
 
-/*      loge in      */
+
+/************ loge in ************/
 
 .orangeInput:focus {
     outline: none;
@@ -324,7 +325,6 @@ body .cancelPassword:hover{
 #staffNav {
     width: 100%;
     height: 100%;
-    /* background-color: darkslategrey; */
     background-color: hsla(178, 35%, 24%, 1.0);
     color: white;
     position: fixed;
@@ -430,7 +430,6 @@ body .cancelPassword:hover{
 #listTitle p:nth-child(1) {
     margin-left: 1.75rem;
 }
-
 
 #listTitle p:last-child {
     margin-right: 1.75rem;
@@ -619,7 +618,6 @@ body .cancelPassword:hover{
 /************ Change Password Page ************/
 
 .flexCtn {
-    /* width: 100%; */
     background-color: rgb(245, 245, 245);
     display: flex;
     justify-content: center;
@@ -633,7 +631,6 @@ body .cancelPassword:hover{
 }
 
 .changePasswordCtn {
-    /* margin: 1.75rem; */
     margin-top: 1rem !important;
     display: grid;
     grid-template-columns: 1fr !important;
@@ -664,8 +661,6 @@ body .cancelPassword:hover{
 }
 
 .changePasswordCheckBox input {
-    /* margin: 0 !important; */
-    /* padding: 0 !important; */
     width: 184px;
     height: 13px;
 }
@@ -692,15 +687,6 @@ body .cancelPassword:hover{
 .submitPassword:active {
     background-color: hsla(178, 35%, 20%, 1.0);
 }
-
-/* .displayText{
-    margin: 0 !important;
-    padding: 0.2rem 0 0.2rem 0.5rem !important;
-    width: 210px;
-    border: 0.6px solid hsla(178, 0%, 70%, 1.0);
-    color: hsla(178, 0%, 70%, 1.0);
-    font-weight: 100 !important;
-} */
 
 .passwordHeader {
     background-color: hsla(178, 35%, 30%, 1.0);
@@ -833,9 +819,6 @@ right: 0;
 }
 
 .loadingAnimation {
-    /* position: fixed; */
-    /* left: calc((100vw - 4rem)/2);
-    top: calc((100vw - 0.5rem)/2); */
     background-color: hsla(178, 65%, 40%, 1.0);
     border-radius: 50px;
     padding: 0.25rem 2rem;
@@ -852,7 +835,6 @@ right: 0;
         transform: rotate(270deg);
         background-color: hsla(30, 65%, 45%, 1.0);
     }
-
 
     50% {
         transform: rotate(540deg);
@@ -873,6 +855,7 @@ right: 0;
 
 
 
+/************ Media Query ************/
 
 @media (max-width: 1280px) {
 
@@ -930,7 +913,4 @@ right: 0;
         display: flex;
         flex-direction: column;
     }
-
-
-
 }
