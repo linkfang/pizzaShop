@@ -25,6 +25,10 @@ let ALPizza = {
             document.querySelector('.changePasswordUser .userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
             document.querySelector('.changePasswordUser .passwordEmail').textContent = ALPizza.userInfor.email;
         })
+        document.querySelector('.cancelPassword').addEventListener('click',()=>{
+            document.querySelector('.welcomeText').classList.remove('hide');
+            document.querySelector('.changePasswordUser').classList.add('hide');
+        })
         document.querySelector('.closeBtn').addEventListener('click',()=>{
             document.querySelector(".notification").classList.add("notificationHide");
         });
