@@ -8,14 +8,16 @@ let ALPizza = {
         email: ""
     },
     init: function () {
+        history.pushState(null, null, `${ALPizza.basic}/index.html`);
         ALPizza.addListteners();
         if (localStorage.getItem('token')) {
             ALPizza.authToken = localStorage.getItem('token');
             ALPizza.getUser();
         }
+        ALPizza.changeWidth();
     },
     addListteners: function () {
-        document.getElementById('userChange').addEventListener('click',()=>{
+        document.getElementById('userChange').addEventListener('click', () => {
             document.querySelector('.welcomeText').classList.add('hide');
             document.querySelector('.changePasswordUser').classList.remove('hide');
             document.querySelector('.changePasswordUser .newPasswordCtn>input').value = '';
@@ -24,12 +26,14 @@ let ALPizza = {
             document.querySelector('.changePasswordUser .newPasswordCtn>input').type = 'password';
             document.querySelector('.changePasswordUser .userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
             document.querySelector('.changePasswordUser .passwordEmail').textContent = ALPizza.userInfor.email;
+            history.pushState(null, null, `${ALPizza.basic}/profile.html`);
         })
-        document.querySelector('.cancelPassword').addEventListener('click',()=>{
+        document.querySelector('.cancelPassword').addEventListener('click', () => {
             document.querySelector('.welcomeText').classList.remove('hide');
             document.querySelector('.changePasswordUser').classList.add('hide');
+            history.pushState(null, null, `${ALPizza.basic}/customer.html`);
         })
-        document.querySelector('.closeBtn').addEventListener('click',()=>{
+        document.querySelector('.closeBtn').addEventListener('click', () => {
             document.querySelector(".notification").classList.add("notificationHide");
         });
         window.onresize = function () {
@@ -43,17 +47,7 @@ let ALPizza = {
         document.querySelectorAll('.cancelBtn').forEach(item => item.addEventListener('click', ALPizza.back));
         document.getElementById('changePass').addEventListener('click', ALPizza.password);
         document.getElementById('logInButton').addEventListener('click', ALPizza.singIn);
-        document.getElementById('logout').addEventListener('click', () => {
-            if (ALPizza.hum) {
-                ALPizza.hideHum();
-            }
-            document.getElementById('staffPage').classList.add('hide');
-            document.getElementById('humburger').classList.add('hide');
-            document.getElementById('logIn').classList.remove('hide');
-            document.getElementById('logInPassword').value = '';
-            ALPizza.authToken = null;
-            localStorage.removeItem('token');
-        });
+        document.getElementById('logout').addEventListener('click', ALPizza.singInPage);
         document.querySelector('.fa-eye-slash.U').addEventListener('click', () => {
             document.getElementById('signUpPassword').type = 'text';
             document.querySelector('.fa-eye.hide.U').classList.remove('hide');
@@ -85,30 +79,34 @@ let ALPizza = {
             document.getElementById('signUpLastName').value = '';
             document.getElementById('signUpEmail').value = '';
             document.getElementById('signUpPassword').value = '';
+            history.pushState(null, null, `${ALPizza.basic}/register.html`);
         });
-        document.getElementById('singInB').addEventListener('click', () => {
-            document.getElementById('logInPassword').type = 'password';
-            document.getElementById('signUpPassword').type = 'password';
-            document.getElementById('logInPassword').value = '';
-            document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
-            document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));
-            document.getElementById('logIn').classList.remove('hide');
-            document.getElementById('signUp').classList.add('hide');
-        });
+        document.getElementById('singInB').addEventListener('click', ALPizza.singInPage);
         document.getElementById('signUpButton').addEventListener('click', ALPizza.singUp);
         document.getElementById('staffContent').addEventListener('click', () => {
             if (ALPizza.hum) {
                 ALPizza.hideHum()
             }
         });
-        document.getElementById('userLogOut').addEventListener('click',()=>{
-            document.getElementById('userList').classList.add('hide');
-            document.getElementById('humburger').classList.add('hide');
-            document.getElementById('logIn').classList.remove('hide');
-            document.getElementById('logInPassword').value = '';
-            ALPizza.authToken = null;
-            localStorage.removeItem('token');
-        });
+        document.getElementById('userLogOut').addEventListener('click', ALPizza.singInPage);
+    },
+    singInPage: function () {
+        if (ALPizza.hum) {
+            ALPizza.hideHum();
+        }
+        document.getElementById('staffPage').classList.add('hide');
+        document.getElementById('logInPassword').type = 'password';
+        document.getElementById('signUpPassword').type = 'password';
+        document.querySelectorAll('.fa-eye').forEach(item => item.classList.add('hide'));
+        document.querySelectorAll('.fa-eye-slash').forEach(item => item.classList.remove('hide'));
+        document.getElementById('signUp').classList.add('hide');
+        document.getElementById('userList').classList.add('hide');
+        document.getElementById('humburger').classList.add('hide');
+        document.getElementById('logIn').classList.remove('hide');
+        document.getElementById('logInPassword').value = '';
+        ALPizza.authToken = null;
+        localStorage.removeItem('token');
+        history.pushState(null, null, `${ALPizza.basic}/index.html`);
     },
     getUser: function () {
         ALPizza.showLoading();
@@ -150,6 +148,7 @@ let ALPizza = {
                     document.getElementById('logIn').classList.add('hide');
                     document.querySelector('.welcomeText').classList.remove('hide');
                     document.querySelector('.changePasswordUser').classList.add('hide');
+                    history.pushState(null, null, `${ALPizza.basic}/customer.html`);
                 }
             })
             .catch(err => console.log(err));
@@ -170,8 +169,8 @@ let ALPizza = {
     changePass: function (user) {
         let newPass;
         let conPass;
-        
-        if(user == 'staff'){
+
+        if (user == 'staff') {
             newPass = document.querySelector('.changePasswordPage .newPasswordCtn>input').value;
             conPass = document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value;
         } else {
@@ -180,7 +179,18 @@ let ALPizza = {
         }
 
         if (newPass != conPass) {
-            alert('The tow passwords are not the same, try again!');
+            let note = {
+                title: "ERROR",
+                detail: "Password confirmation doesn't match the password."
+            }
+            ALPizza.not(note);
+            if (user == 'staff') {
+                document.querySelector('.changePasswordPage .newPasswordCtn>input').value = '';
+                document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value = '';
+            } else {
+                document.querySelector('.changePasswordUser .newPasswordCtn>input').value = '';
+                document.querySelector('.changePasswordUser .confirmPasswordCtn>input').value = '';
+            }
             return;
         }
 
@@ -210,13 +220,20 @@ let ALPizza = {
             })
             .then(function (data) {
                 if (data.data) {
-                    let not ={
+                    let not = {
                         title: 'Succeed',
-                        detail:`Password has been changed.`
-                    } ;
+                        detail: `Password has been changed.`
+                    };
                     ALPizza.not(not);
-                } else if (data.errors){
-                    ALPizza.not(data.errors[0]);
+                    if (user == 'staff') {
+                        document.querySelector('.changePasswordPage .newPasswordCtn>input').value = '';
+                        document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value = '';
+                    } else {
+                        document.querySelector('.changePasswordUser .newPasswordCtn>input').value = '';
+                        document.querySelector('.changePasswordUser .confirmPasswordCtn>input').value = '';
+                    }
+                } else if (data.errors) {
+                    ALPizza.not(data);
                 }
             })
             .catch(err => {
@@ -273,14 +290,14 @@ let ALPizza = {
                 console.log(data);
                 ALPizza.hideLoading();
                 if (data.data) {
-                    let not ={
+                    let not = {
                         title: 'Succeed',
-                        detail:`New account has been created, you can sign in now.`
-                    } ;
+                        detail: `New account has been created, you can sign in now.`
+                    };
                     ALPizza.not(not);
                     document.querySelector('#singInB').dispatchEvent(new MouseEvent('click'));
-                } else if (data.errors){
-                    ALPizza.not(data.errors[0]);
+                } else if (data.errors) {
+                    ALPizza.not(data);
                 }
             })
             .catch(err => console.log(err));
@@ -329,7 +346,7 @@ let ALPizza = {
                 console.log(data);
                 ALPizza.hideLoading();
                 if (data.errors) {
-                    ALPizza.not(data.errors[0]);
+                    ALPizza.not(data);
                     return;
                 }
                 ALPizza.authToken = data.data.token;
@@ -354,6 +371,8 @@ let ALPizza = {
         }
         document.querySelector('.contentTitle p').textContent = this.textContent;
 
+        history.pushState(null, null, `${ALPizza.basic}/profile.html`);
+
         document.querySelector('.changePasswordPage .newPasswordCtn>input').value = '';
         document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value = '';
         document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type = 'password';
@@ -370,10 +389,11 @@ let ALPizza = {
         this.classList.add('highlight');
         document.querySelector('.contentTitle p').textContent = this.textContent;
         document.getElementById('add').classList.add('hide');
-        // history.pushState(null, null, `${ALPizza.basic}/changepassword`)
     },
     back: function () {
         document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
+        document.querySelector('.pizzaAdd').removeAttribute('data-id');
+        document.querySelector('.ingredientAdd').removeAttribute('data-id');
     },
     getData: function () {
         if (ALPizza.hum) {
@@ -391,7 +411,7 @@ let ALPizza = {
         document.getElementById('add').textContent = `+ Add New ${this.textContent.substring(0, this.textContent.lastIndexOf('s'))}`;
         ALPizza.option = this.textContent.trim().toLowerCase();
 
-        // history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}`);
+        history.pushState(null, null, `${ALPizza.basic}/admin/${ALPizza.option}.html`);
 
         ALPizza.showLoading();
 
@@ -412,7 +432,7 @@ let ALPizza = {
             })
             .then(function (data) {
                 console.log(data);
-                 ALPizza.hideLoading();                
+                ALPizza.hideLoading();
                 let content = document.querySelector('#listPage');
                 content.innerHTML = '';
 
@@ -436,7 +456,7 @@ let ALPizza = {
                     deleteButton.className = 'far fa-trash-alt';
 
                     edit.addEventListener('click', () => ALPizza.addData(item));
-                    deleteButton.addEventListener('click', () => ALPizza.deleteData(item._id));
+                    deleteButton.addEventListener('click', () => ALPizza.confrimDelete(item));
 
                     editDiv.appendChild(edit);
                     editDiv.appendChild(deleteButton);
@@ -463,8 +483,19 @@ let ALPizza = {
             })
             .catch(err => console.log(err));
     },
-    deleteData: function (id) {
-        console.log(id);
+    confrimDelete(item) {
+        document.querySelector('.overlayCon').classList.remove('hide');
+        document.querySelector('.modal').classList.remove('hide');
+        document.querySelector('#deleteDetail').textContent = `Do you want to delete ${item.name}?`;
+
+        document.getElementById('confirmDelete').setAttribute('data-id', item._id);
+    },
+    cancelDelete() {
+        document.querySelector('.overlayCon').classList.add('hide');
+        document.querySelector('.modal').classList.add('hide');
+    },
+    deleteData: function () {
+        let id = document.getElementById('confirmDelete').getAttribute('data-id');
 
         ALPizza.showLoading();
 
@@ -492,14 +523,16 @@ let ALPizza = {
                 ALPizza.hideLoading();
 
                 if (data.data) {
-                    let not ={
+                    let not = {
                         title: 'Succeed',
-                        detail:`${data.data.name} has been deleted!`
-                    } ;
+                        detail: `${data.data.name} has been deleted!`
+                    };
                     ALPizza.not(not);
                     document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-                } else if (data.errors){
-                    ALPizza.not(data.errors[0]);
+                    ALPizza.cancelDelete();
+                } else if (data.errors) {
+                    ALPizza.not(data);
+                    ALPizza.cancelDelete();
                 }
 
             })
@@ -508,11 +541,13 @@ let ALPizza = {
     addData: function (item) {
         document.querySelector('.contentList').classList.remove('show');
         document.querySelector('.contentList').classList.add('hide');
-        // history.pushState(null, null, `${ALPizza.basic}/${ALPizza.option}edit`);
+        document.querySelector('.pizzaAdd').removeAttribute('data-id');
+        document.querySelector('.ingredientAdd').removeAttribute('data-id');
 
         console.log(ALPizza.option);
 
         if (ALPizza.option == "pizzas") {
+            history.pushState(null, null, `${ALPizza.basic}/admin/pizza-edit.html`);
             document.querySelector('.pizzaEdit').classList.add('show');
 
             document.querySelector('.pizzaNameCtn input').value = '';
@@ -601,6 +636,8 @@ let ALPizza = {
                 .catch(err => console.log(err))
         } else if (ALPizza.option == "ingredients") {
             document.querySelector('.ingredientEdit').classList.add('show');
+
+            history.pushState(null, null, `${ALPizza.basic}/admin/ingredient-edit.html`);
 
             document.querySelector('.ingredientNameCtn input').value = "";
             document.querySelector('.ingredientPriceCtn input').value = "";
@@ -757,20 +794,20 @@ let ALPizza = {
                 console.log(data);
                 ALPizza.hideLoading();
                 document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-               
-                if (data.data) {
-                    let not ={
-                        title: 'Succeed',
-                        detail:`${data.data.name} has been added.`
-                    } ;
 
-                    if(opt == 'PUT'){
+                if (data.data) {
+                    let not = {
+                        title: 'Succeed',
+                        detail: `${data.data.name} has been added.`
+                    };
+
+                    if (opt == 'PUT') {
                         not.detail = `${data.data.name} has been modified.`
                     }
 
                     ALPizza.not(not);
-                } else if (data.errors){
-                    ALPizza.not(data.errors[0]);
+                } else if (data.errors) {
+                    ALPizza.not(data);
                 }
             })
             .catch(err => {
@@ -778,9 +815,18 @@ let ALPizza = {
             })
     },
     not: function (not) {
-        document.querySelector('.notification p:nth-child(1)').textContent = not.title;
-        document.querySelector('.notification p:nth-child(2)').textContent = not.detail;
-        
+        console.log(not)
+        if (not.title) {
+            if (not.errors) {
+                not = not.errors[0];
+            }
+            document.querySelector('.notification p:nth-child(1)').textContent = not.title;
+            document.querySelector('.notification p:nth-child(2)').textContent = not.detail;
+        } else {
+            document.querySelector('.notification p:nth-child(1)').textContent = not.errors.name;
+            document.querySelector('.notification p:nth-child(2)').textContent = not.errors.message;
+        }
+
         document.querySelector(".notification").classList.remove("notificationHide");
         setTimeout(() => {
             document.querySelector(".notification").classList.add("notificationHide");
@@ -807,7 +853,7 @@ let ALPizza = {
         }
     },
     taggleInputType: function (ops, user) {
-        if(user == 'staff'){
+        if (user == 'staff') {
             if (ops == "new") {
                 if (document.querySelector('.changePasswordPage .newPasswordCtn>input').type == 'text') {
                     document.querySelector('.changePasswordPage .newPasswordCtn>input').type = 'password';
@@ -837,10 +883,10 @@ let ALPizza = {
             }
         }
     },
-    showLoading: function(){
+    showLoading: function () {
         document.querySelector('.loadingOverlay').classList.remove('loadingOverlayHide');
     },
-    hideLoading: function(){
+    hideLoading: function () {
         document.querySelector('.loadingOverlay').classList.add('loadingOverlayHide');
     }
 }

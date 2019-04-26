@@ -159,7 +159,7 @@ body .cancelPassword:hover{
 
 #signUpWindow {
     height: 38rem;
-    top: calc((100vh - 43rem)/2);
+    top: calc((100vh - 38rem)/2);
 }
 
 #overLay {
@@ -765,7 +765,7 @@ button:focus {
     font-size: 1.3rem;
     padding: 0.55rem 2rem;
     background-color: rgb(207, 112, 24);
-    border-radius: 6px;
+    border-radius: 5px;
     box-shadow: 1px 1px 20px hsla(178, 0%, 0%, 0.3);
     z-index: 1000;
     color: white;
@@ -865,6 +865,70 @@ right: 0;
     }
 }
 
+
+/*          confirmation          */
+
+
+.overlayCon {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.modal{
+    z-index: 2000;    
+    background-color: white;
+    width: 25rem;
+    height: 15rem;
+    position: fixed;
+    top: calc((100vh - 15rem)/2);
+    left: calc((100vw - 25rem)/2);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal p:nth-child(1){
+    background-color: hsla(178, 35%, 28%, 1.0);
+    color: white;
+    padding: 0.75rem 1rem;
+    font-size: 1.3rem;
+    align-self: stretch;
+    text-align: center;
+}
+
+.modal div{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.modal button{
+    background-color: hsla(178, 35%, 28%, 1.0);
+    color: white;
+    border: 0;
+    padding: 0 1rem;
+}
+
+#confirmDelete:hover{
+    background-color: hsla(178, 35%, 20%, 1.0);
+}
+
+.modal button#cancelDelete{
+    background-color: rgb(151, 151, 151);
+}
+
+.modal button#cancelDelete:hover{
+    background-color: rgb(114, 114, 114);
+}
 
 
 /************ Media Query ************/

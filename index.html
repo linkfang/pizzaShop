@@ -141,6 +141,16 @@
         </div>
     </div>
 
+    <div class="hide overlayCon" onclick="ALPizza.cancelDelete()">&nbsp;</div>
+    <div class="hide modal">
+            <p>CONFIRMATION</p>
+            <p id="deleteDetail">Detail</p>
+            <div>
+                <button id='cancelDelete' onclick="ALPizza.cancelDelete()">Cancel</button>
+                <button id='confirmDelete' onclick="ALPizza.deleteData()">Delete</button>
+            </div>
+    </div>
+
     <div id="staffPage" class="hide">
         <nav id="staffNav">
             <div class="navTitle">
