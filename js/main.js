@@ -8,13 +8,26 @@ let ALPizza = {
         email: ""
     },
     init: function () {
-        // history.pushState(null, null, `${ALPizza.basic}/index.html`);
+        ALPizza.checkBasicURL();
+        history.pushState(null, null, `${ALPizza.basic}/index.html`);
         ALPizza.addListteners();
         if (localStorage.getItem('token')) {
             ALPizza.authToken = localStorage.getItem('token');
             ALPizza.getUser();
         }
         ALPizza.changeWidth();
+    },
+    checkBasicURL: function(){
+
+        let url = ALPizza.basic.split('');
+        console.log(url);
+        if (url[url.length - 1] == '/'){
+            url.pop();
+        }
+        ALPizza.basic  = url.join('');
+
+        console.log(ALPizza.basic)
+
     },
     addListteners: function () {
         document.getElementById('userChange').addEventListener('click', () => {
