@@ -46,7 +46,7 @@
                             <input class="form-check-input" onclick="ALPizza.taggleInputType('new','user')" name="showPassword"
                                 type="checkbox" value="showNew" id="showNewPassword">
                         </div>
-                        <input type="password" required="required">
+                        <input class="organePasswordInput" type="password" required="required">
                     </div>
 
                     <div class="confirmPasswordCtn">
@@ -58,10 +58,11 @@
                             <input class="form-check-input" onclick="ALPizza.taggleInputType('con','user')" name="showPassword"
                                 type="checkbox" value="showNew">
                         </div>
-                        <input type="password" required="required">
+                        <input class="organePasswordInput" type="password" required="required">
                     </div>
 
-                    <div class="buttonCtn buttonCtnPassword">
+                    <div class="buttonCtn buttonCtnPassword userPasswordCtn">
+                            <button class="orangeBtn cancelPassword">Cancel</button>
                         <button class="orangeBtn submitPassword" onclick="ALPizza.changePass('user')">Submit</button>
                     </div>
                 </div>
