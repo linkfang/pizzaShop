@@ -15,6 +15,16 @@ let ALPizza = {
         }
     },
     addListteners: function () {
+        document.getElementById('userChange').addEventListener('click',()=>{
+            document.querySelector('.welcomeText').classList.add('hide');
+            document.querySelector('.changePasswordUser').classList.remove('hide');
+            document.querySelector('.changePasswordUser .newPasswordCtn>input').value = '';
+            document.querySelector('.changePasswordUser .confirmPasswordCtn>input').value = '';
+            document.querySelector('.changePasswordUser .confirmPasswordCtn>input').type = 'password';
+            document.querySelector('.changePasswordUser .newPasswordCtn>input').type = 'password';
+            document.querySelector('.changePasswordUser .userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
+            document.querySelector('.changePasswordUser .passwordEmail').textContent = ALPizza.userInfor.email;
+        })
         document.querySelector('.closeBtn').addEventListener('click',()=>{
             document.querySelector(".notification").classList.add("notificationHide");
         });
@@ -24,7 +34,6 @@ let ALPizza = {
         document.querySelector('.fa-bars').addEventListener('click', ALPizza.showHum);
         document.querySelectorAll('.option').forEach(item => item.addEventListener('click', ALPizza.getData));
         document.getElementById('add').addEventListener('click', ALPizza.addData);
-        document.querySelector('.submitPassword').addEventListener('click', ALPizza.changePass);
         document.querySelector('.pizzaAdd').addEventListener('click', ALPizza.savePizza);
         document.querySelector('.ingredientAdd').addEventListener('click', ALPizza.saveIngredients);
         document.querySelectorAll('.cancelBtn').forEach(item => item.addEventListener('click', ALPizza.back));
@@ -88,6 +97,14 @@ let ALPizza = {
                 ALPizza.hideHum()
             }
         });
+        document.getElementById('userLogOut').addEventListener('click',()=>{
+            document.getElementById('userList').classList.add('hide');
+            document.getElementById('humburger').classList.add('hide');
+            document.getElementById('logIn').classList.remove('hide');
+            document.getElementById('logInPassword').value = '';
+            ALPizza.authToken = null;
+            localStorage.removeItem('token');
+        });
     },
     getUser: function () {
         ALPizza.showLoading();
@@ -127,6 +144,8 @@ let ALPizza = {
                 } else {
                     document.getElementById('userList').classList.remove('hide');
                     document.getElementById('logIn').classList.add('hide');
+                    document.querySelector('.welcomeText').classList.remove('hide');
+                    document.querySelector('.changePasswordUser').classList.add('hide');
                 }
             })
             .catch(err => console.log(err));
@@ -144,9 +163,17 @@ let ALPizza = {
         document.getElementById('staffNav').removeAttribute('style');
         ALPizza.hum = false;
     },
-    changePass: function () {
-        let newPass = document.querySelector('.newPasswordCtn>input').value;
-        let conPass = document.querySelector('.confirmPasswordCtn>input').value;
+    changePass: function (user) {
+        let newPass;
+        let conPass;
+        
+        if(user == 'staff'){
+            newPass = document.querySelector('.changePasswordPage .newPasswordCtn>input').value;
+            conPass = document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value;
+        } else {
+            newPass = document.querySelector('.changePasswordUser .newPasswordCtn>input').value;
+            conPass = document.querySelector('.changePasswordUser .confirmPasswordCtn>input').value;
+        }
 
         if (newPass != conPass) {
             alert('The tow passwords are not the same, try again!');
@@ -298,7 +325,7 @@ let ALPizza = {
                 console.log(data);
                 ALPizza.hideLoading();
                 if (data.errors) {
-                    alert(data.errors[0].title + " Please try again!");
+                    ALPizza.not(data.errors[0]);
                     return;
                 }
                 ALPizza.authToken = data.data.token;
@@ -321,13 +348,13 @@ let ALPizza = {
         if (ALPizza.hum) {
             ALPizza.hideHum();
         }
-        document.querySelector('.newPasswordCtn>input').value = '';
-        document.querySelector('.confirmPasswordCtn>input').value = '';
-        document.querySelector('.confirmPasswordCtn>input').type = 'password';
-        document.querySelector('.newPasswordCtn>input').type = 'password';
+        document.querySelector('.changePasswordPage .newPasswordCtn>input').value = '';
+        document.querySelector('.changePasswordPage .confirmPasswordCtn>input').value = '';
+        document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type = 'password';
+        document.querySelector('.changePasswordPage .newPasswordCtn>input').type = 'password';
 
-        document.querySelector('.userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
-        document.querySelector('.passwordEmail').textContent = ALPizza.userInfor.email;
+        document.querySelector('.changePasswordPage .userName').textContent = ALPizza.userInfor.firstName + " " + ALPizza.userInfor.lastName;
+        document.querySelector('.changePasswordPage .passwordEmail').textContent = ALPizza.userInfor.email;
 
         let showedPage = document.querySelector('.show');
         showedPage.classList.add('hide');
@@ -773,18 +800,34 @@ let ALPizza = {
             }
         }
     },
-    taggleInputType: function (ops) {
-        if (ops == "new") {
-            if (document.querySelector('.newPasswordCtn>input').type == 'text') {
-                document.querySelector('.newPasswordCtn>input').type = 'password';
+    taggleInputType: function (ops, user) {
+        if(user == 'staff'){
+            if (ops == "new") {
+                if (document.querySelector('.changePasswordPage .newPasswordCtn>input').type == 'text') {
+                    document.querySelector('.changePasswordPage .newPasswordCtn>input').type = 'password';
+                } else {
+                    document.querySelector('.changePasswordPage .newPasswordCtn>input').type = 'text';
+                }
             } else {
-                document.querySelector('.newPasswordCtn>input').type = 'text';
+                if (document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type == 'text') {
+                    document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type = 'password';
+                } else {
+                    document.querySelector('.changePasswordPage .confirmPasswordCtn>input').type = 'text';
+                }
             }
         } else {
-            if (document.querySelector('.confirmPasswordCtn>input').type == 'text') {
-                document.querySelector('.confirmPasswordCtn>input').type = 'password';
+            if (ops == "new") {
+                if (document.querySelector('.changePasswordUser .newPasswordCtn>input').type == 'text') {
+                    document.querySelector('.changePasswordUser .newPasswordCtn>input').type = 'password';
+                } else {
+                    document.querySelector('.changePasswordUser .newPasswordCtn>input').type = 'text';
+                }
             } else {
-                document.querySelector('.confirmPasswordCtn>input').type = 'text';
+                if (document.querySelector('.changePasswordUser .confirmPasswordCtn>input').type == 'text') {
+                    document.querySelector('.changePasswordUser .confirmPasswordCtn>input').type = 'password';
+                } else {
+                    document.querySelector('.changePasswordUser .confirmPasswordCtn>input').type = 'text';
+                }
             }
         }
     },

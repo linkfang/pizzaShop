@@ -7,7 +7,6 @@ body {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
-    background-color: rgb(245, 245, 245);
     font-family: Quicksand, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.2rem;
 }
@@ -132,7 +131,7 @@ header {
 }
 
 #overLay {
-    background-image: url('../img/9.jpg');
+    background-image: url('../img/pizza-big.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -319,6 +318,9 @@ header {
     margin: 2rem 0 2rem 0;
 }
 
+#staffContent{
+    background-color: rgb(245, 245, 245);
+}
 
 #staffNav .shop p,
 #staffNav .people p {
