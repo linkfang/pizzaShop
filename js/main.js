@@ -1,7 +1,7 @@
 let ALPizza = {
     option: null,
     basic: window.location.href,
-    dataURL: 'http://zhou0160.edumedia.ca',
+    dataURL: 'https://zhou0160.edumedia.ca',
     userInfor: {
         firstName: "",
         lastName: "",
@@ -17,12 +17,12 @@ let ALPizza = {
         }
         ALPizza.changeWidth();
     },
-    checkBasicURL: function(){
+    checkBasicURL: function () {
         let url = ALPizza.basic.split('');
-        if (url[url.length - 1] == '/'){
+        if (url[url.length - 1] == '/') {
             url.pop();
         }
-        ALPizza.basic  = url.join('');
+        ALPizza.basic = url.join('');
     },
     addListteners: function () {
         document.getElementById('userChange').addEventListener('click', () => {
@@ -459,7 +459,7 @@ let ALPizza = {
                     name.textContent = item.name;
                     price.textContent = item.price;
 
-                    if (item.isGlutenFree){
+                    if (item.isGlutenFree) {
                         free.textContent = "Yes";
                     } else {
                         free.textContent = "No";
@@ -686,7 +686,6 @@ let ALPizza = {
         }
     },
     savePizza: function () {
-        document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
 
         let name = document.querySelector('.pizzaNameCtn input').value;
         let price = document.querySelector('.pizzaPriceCtn input').value;
@@ -809,13 +808,13 @@ let ALPizza = {
             .then(function (data) {
                 console.log(data);
                 ALPizza.hideLoading();
-                document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
-
+                
                 if (data.data) {
                     let not = {
                         title: 'Succeed',
                         detail: `${data.data.name} has been added.`
                     };
+                    document.querySelector('.highlight').dispatchEvent(new MouseEvent('click'));
 
                     if (opt == 'PUT') {
                         not.detail = `${data.data.name} has been modified.`
@@ -832,15 +831,20 @@ let ALPizza = {
     },
     not: function (not) {
         console.log(not)
+
         if (not.title) {
-            if (not.errors) {
-                not = not.errors[0];
-            }
             document.querySelector('.notification p:nth-child(1)').textContent = not.title;
             document.querySelector('.notification p:nth-child(2)').textContent = not.detail;
-        } else {
+        } else if (not.errors[0]) {
+            not = not.errors[0];
+            document.querySelector('.notification p:nth-child(1)').textContent = not.title;
+            document.querySelector('.notification p:nth-child(2)').textContent = not.detail;
+        } else if (not.errors.name) {
             document.querySelector('.notification p:nth-child(1)').textContent = not.errors.name;
             document.querySelector('.notification p:nth-child(2)').textContent = not.errors.message;
+        } else {
+            document.querySelector('.notification p:nth-child(1)').textContent = "Ooops!";
+            document.querySelector('.notification p:nth-child(2)').textContent = "Something went wrong, please try again!";
         }
 
         document.querySelector(".notification").classList.remove("notificationHide");
@@ -858,7 +862,7 @@ let ALPizza = {
             document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.add('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr';
             if (document.querySelector('.staffLis')) {
-                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr');
+                document.querySelectorAll('.staffLis').forEach((item) => item.style.gridTemplateColumns = '1fr 1fr 1fr');
             }
 
         } else if (width < 1100) {
@@ -868,7 +872,7 @@ let ALPizza = {
             document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.add('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr';
             if (document.querySelector('.staffLis')) {
-                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr');
+                document.querySelectorAll('.staffLis').forEach((item) => item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr');
             }
         } else {
             document.querySelector('#listTitle p:nth-child(3)').classList.remove('hide');
@@ -877,7 +881,7 @@ let ALPizza = {
             document.querySelectorAll('.staffLis p:nth-child(4)').forEach(item => item.classList.remove('hide'));
             document.getElementById('listTitle').style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr';
             if (document.querySelector('.staffLis')) {
-                document.querySelectorAll('.staffLis').forEach((item)=> item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr');
+                document.querySelectorAll('.staffLis').forEach((item) => item.style.gridTemplateColumns = '1fr 1fr 1fr 1fr 1fr');
             }
         }
     },
