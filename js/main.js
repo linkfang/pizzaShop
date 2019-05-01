@@ -15,7 +15,6 @@ let ALPizza = {
             ALPizza.authToken = localStorage.getItem('token');
             ALPizza.getUser();
         }
-        ALPizza.changeWidth();
     },
     checkBasicURL: function () {
         let url = ALPizza.basic.split('');
@@ -496,6 +495,7 @@ let ALPizza = {
                 })
 
                 content.appendChild(documentFragment);
+                ALPizza.changeWidth();
             })
             .catch(err => console.log(err));
     },
