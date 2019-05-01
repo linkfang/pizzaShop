@@ -924,4 +924,4 @@ let ALPizza = {
     }
 }
 
-ALPizza.init();
+document.addEventListener("DOMContentLoaded", ALPizza.init);
