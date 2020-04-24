@@ -1,2 +1,2 @@
 # pizzaShop
-Repo link: https://fang0055.github.io/pizzaShop/
+Back-end repo: https://github.com/zhou0160/pizzaShop 
